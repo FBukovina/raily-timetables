@@ -1,0 +1,110 @@
+name: Update and publish national timetables
+on:
+  workflow_dispatch:
+    inputs:
+      bootstrap:
+        description: Publish the complete validated initial catalog (only while source check is fresh)
+        type: boolean
+        default: false
+  schedule:
+    # GitHub cron uses UTC. The guard selects 05:17 Prague across DST.
+    - cron: '17 3 * * *'
+    - cron: '17 4 * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: national-timetable-publication
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Select 05:17 Europe/Prague
+        id: clock
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          python - <<'PY'
+          import datetime, os
+          from zoneinfo import ZoneInfo
+          offset = datetime.datetime.now(ZoneInfo('Europe/Prague')).utcoffset().total_seconds() / 3600
+          target = '17 3 * * *' if offset == 2 else '17 4 * * *'
+          enabled = os.environ['EVENT_NAME'] != 'schedule' or os.environ['SCHEDULE'] == target
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write(f'enabled={str(enabled).lower()}\n')
+          PY
+      - name: Importer regression tests
+        if: steps.clock.outputs.enabled == 'true'
+        run: python -m unittest discover -s tests -v
+      - name: Restore compressed monthly source batches
+        if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/cisjr
+          key: cisjr-v1-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: cisjr-v1-${{ runner.os }}-
+      - name: Preserve preceding catalog
+        if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
+        run: python scripts/publish.py previous
+      - name: Download complete authoritative source set
+        if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
+        run: python -u scripts/download.py
+      - name: Build complete catalog
+        if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
+        run: python -u scripts/catalog.py
+      - name: Use validated bootstrap
+        if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap == true
+        run: python scripts/publish.py bootstrap
+      - name: Save resumable source batches even on failure
+        if: always() && steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/cisjr
+          key: cisjr-v1-${{ runner.os }}-${{ github.run_id }}
+      - name: Independent catalog verification and retention
+        if: steps.clock.outputs.enabled == 'true'
+        run: |
+          python scripts/publish.py verify
+          python scripts/publish.py prune
+          touch site/.nojekyll
+      - name: Record successful source check
+        if: steps.clock.outputs.enabled == 'true'
+        run: |
+          cp site/catalog/v1/source-check.json source-checks/latest.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-checks/latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record successful timetable source check'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Configure Pages
+        if: steps.clock.outputs.enabled == 'true'
+        uses: actions/configure-pages@v5
+      - name: Upload validated Pages artifact
+        if: steps.clock.outputs.enabled == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+    outputs:
+      enabled: ${{ steps.clock.outputs.enabled }}
+  deploy:
+    if: needs.build.outputs.enabled == 'true'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy validated catalog
+        id: deployment
+        uses: actions/deploy-pages@v4

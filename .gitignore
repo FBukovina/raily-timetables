@@ -1,0 +1,6 @@
+.cache/
+site/
+__pycache__/
+*.pyc
+*.partial
+bootstrap/
