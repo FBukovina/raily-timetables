@@ -89,12 +89,17 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(p['facilities'],[])
     def test_normalized_search_matches_app_punctuation_and_diacritics(self):
         self.assertEqual(normalized('České Budějovice hl.n.'),'ceskebudejovicehln')
-    def test_unmarked_decreasing_times_fail_closed(self):
-        with self.assertRaisesRegex(ValueError,'Unmarked decreasing'):
-            resolve(path(points=[point('10001','12:10:00'),point('10002','12:00:00')]))
+    def test_unmarked_decreasing_source_times_are_quarantined(self):
+        store=Timetables();store.add(parse_message(path(points=[point('10001','12:10:00'),point('10002','12:00:00')])))
+        self.assertEqual(list(store.resolve()),[])
+        self.assertEqual(store.exclusions[0]['reason'],'unmarkedDecreasingSourceTimes')
+        self.assertEqual(store.exclusions[0]['days'],['2026-10-01','2026-10-02','2026-10-03'])
     def test_declared_countertime_is_not_published_as_normal_schedule(self):
         middle=point('10002','12:00:00').replace('</CZPTTLocation>',parameter('CZInconsistentTime','1')+'</CZPTTLocation>')
         self.assertEqual(resolve(path(points=[point('10001','12:10:00'),middle,point('10003','12:30:00')])),[])
+    def test_foreign_bad_clock_does_not_reinterpret_domestic_destination(self):
+        foreign=point('10003','11:00:00').replace('<CountryCodeISO>CZ','<CountryCodeISO>SK')
+        self.assertEqual(resolve(path(points=[point('10001'),point('10002','12:30:00'),foreign])),[])
     def test_gzip_inflation_is_bounded(self):
         with self.assertRaisesRegex(ValueError,'Unsafe XML'):
             xml_bytes(gzip.compress(b'X'*(8*1024*1024+1)))

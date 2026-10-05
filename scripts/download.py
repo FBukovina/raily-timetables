@@ -66,13 +66,17 @@ def run(cache,year):
     annual_path=cache/f'JR{year}.zip'; meta_path=cache/f'JR{year}.json'
     if not (annual_path.exists() and meta_path.exists() and all(json.loads(meta_path.read_text()).get(k)==v for k,v in annual_meta.items()) and annual_path.stat().st_size==annual_meta['bytes']):
         print(f'Downloading annual archive {annual_meta["bytes"]} bytes',flush=True)
-        temp=annual_path.with_suffix('.partial')
+        temp=annual_path.with_suffix('.partial'); partial_meta=cache/f'JR{year}.partial.json'
+        if not partial_meta.exists() or json.loads(partial_meta.read_text())!=annual_meta:
+            temp.unlink(missing_ok=True)
+        partial_meta.write_text(json.dumps(annual_meta,sort_keys=True))
         subprocess.run(['curl','--fail','--location','--retry','6','--retry-all-errors','--connect-timeout','30','--max-time','600','--continue-at','-','--output',str(temp),annual],check=True)
         if temp.stat().st_size!=annual_meta['bytes']: raise ValueError('Incomplete annual archive')
         with zipfile.ZipFile(temp) as z:
             if z.testzip(): raise ValueError('Corrupt annual archive')
-        temp.replace(annual_path); meta_path.write_text(json.dumps(annual_meta,sort_keys=True))
+        temp.replace(annual_path); partial_meta.unlink(missing_ok=True); meta_path.write_text(json.dumps(annual_meta,sort_keys=True))
     annual_meta['sha256']=hashlib.sha256(annual_path.read_bytes()).hexdigest()
+    annual_meta['checkedAt']=dt.datetime.now(dt.timezone.utc).isoformat().replace('+00:00','Z')
     meta_path.write_text(json.dumps(annual_meta,sort_keys=True))
     months=[u for u in urls if re.search(r'/\d{4}-\d{2}/$',u)]
     inventories=[]

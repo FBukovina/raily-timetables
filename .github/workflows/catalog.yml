@@ -52,7 +52,7 @@ jobs:
           key: cisjr-v1-${{ runner.os }}-${{ github.run_id }}
           restore-keys: cisjr-v1-${{ runner.os }}-
       - name: Preserve preceding catalog
-        if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
+        if: steps.clock.outputs.enabled == 'true'
         run: python scripts/publish.py previous
       - name: Download complete authoritative source set
         if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
@@ -75,6 +75,9 @@ jobs:
           python scripts/publish.py verify
           python scripts/publish.py prune
           touch site/.nojekyll
+      - name: Publish trusted raw catalog endpoint
+        if: steps.clock.outputs.enabled == 'true'
+        run: python scripts/mirror.py
       - name: Record successful source check
         if: steps.clock.outputs.enabled == 'true'
         run: |

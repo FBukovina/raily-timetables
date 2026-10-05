@@ -2,7 +2,7 @@
 """Validate Pages artifacts and preserve the preceding immutable catalog."""
 import argparse, datetime as dt, gzip, hashlib, json, pathlib, shutil, sqlite3, tempfile
 import urllib.error, urllib.parse, urllib.request
-BASE='https://fbukovina.github.io/raily-timetables/catalog/v1'
+BASE='https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/v1'
 
 def read_url(url,limit):
     with urllib.request.urlopen(url,timeout=90) as response:
@@ -36,6 +36,13 @@ def verify(folder,fresh=False):
         metadata=dict(db.execute('SELECT key,value FROM metadata'))
         for key in ('validFrom','validThrough','sourceCheckedAt','generatedAt'):
             if metadata[key]!=manifest[key]: raise ValueError(f'Metadata mismatch: {key}')
+        if db.execute('SELECT min(day),max(day) FROM service_days').fetchone()!=(manifest['validFrom'],manifest['validThrough']): raise ValueError('Service dates mismatch manifest validity')
+        broken=db.execute('''WITH times AS (
+          SELECT variant_id,sequence*2 AS ordinal,arrival_day_offset*86400+arrival_seconds AS seconds FROM calls WHERE arrival_seconds IS NOT NULL
+          UNION ALL SELECT variant_id,sequence*2+1,departure_day_offset*86400+departure_seconds FROM calls WHERE departure_seconds IS NOT NULL
+        ), ordered AS (SELECT variant_id,seconds,lag(seconds) OVER(PARTITION BY variant_id ORDER BY ordinal) AS prior FROM times)
+        SELECT variant_id FROM ordered WHERE seconds<prior LIMIT 1''').fetchone()
+        if broken: raise ValueError(f'Nonchronological exported journey: {broken[0]}')
         if db.execute('SELECT count(*) FROM stations').fetchone()[0]<2000: raise ValueError('Station coverage sanity gate')
         if db.execute('SELECT count(*) FROM variants').fetchone()[0]<5000: raise ValueError('Train coverage sanity gate')
         db.close()
@@ -68,4 +75,5 @@ if __name__=='__main__':
     else:
         source=pathlib.Path('bootstrap/catalog/v1'); verify(source,fresh=True)
         a.folder.mkdir(parents=True,exist_ok=True)
+        if (a.folder/'manifest.json').exists(): shutil.copy2(a.folder/'manifest.json',a.folder/'previous-manifest.json')
         for path in source.iterdir(): shutil.copy2(path,a.folder/path.name)

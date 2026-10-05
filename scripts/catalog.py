@@ -175,7 +175,7 @@ def parse_message(data,codebooks=None):
     return {'kind':'path','id':key,'created':timestamp(required(root,'CZPTTCreation')),'days':calendar(info.find('PlannedCalendar')),'points':points,'name':params.get('CZTrainName',[''])[0],'facilities':facilities,'related':path_identity(root,True),'original':original}
 
 class Timetables:
-    def __init__(self): self.paths={}; self.cancellations=collections.defaultdict(list); self.counts=collections.Counter()
+    def __init__(self): self.paths={}; self.cancellations=collections.defaultdict(list); self.counts=collections.Counter(); self.exclusions=[]
     def add(self,message):
         self.counts[message['kind']]+=1; key=message['id']
         if message['kind']=='cancel': self.cancellations[key].append(message); return
@@ -225,10 +225,23 @@ class Timetables:
                 if not any(c['allows_boarding'] for c in calls[:-1]) or not any(c['allows_alighting'] for c in calls[1:]): continue
                 times=[c[k+'_day_offset']*86400+c[k+'_seconds'] for c in calls for k in ('arrival','departure') if c[k+'_seconds'] is not None]
                 if times!=sorted(times):
-                    if any(c['inconsistent'] for c in calls):
-                        self.counts['excludedCountertimeVariants']+=1
+                    domestic=[c for c in calls if c['country']=='CZ']
+                    domestic_times=[c[k+'_day_offset']*86400+c[k+'_seconds'] for c in domestic for k in ('arrival','departure') if c[k+'_seconds'] is not None]
+                    if len(domestic)>=2 and len(domestic)<len(calls) and domestic_times==sorted(domestic_times):
+                        # Specification §3.1.4 labels foreign clocks informational.
+                        # The v1 client cannot represent a route with unknown end
+                        # timing. Omit the variant rather than invent a destination.
+                        self.counts['excludedForeignTimingVariants']+=1
+                        self.exclusions.append({'pathID':key,'days':sorted(dates),'reason':'inconsistentInformationalForeignTimes'})
                         continue
-                    raise ValueError(f'Unmarked decreasing call times: {key}')
+                    elif any(c['inconsistent'] for c in calls):
+                        self.counts['excludedCountertimeVariants']+=1
+                        self.exclusions.append({'pathID':key,'days':sorted(dates),'reason':'declaredOperationalCountertime'})
+                        continue
+                    else:
+                        self.counts['excludedInvalidTimingVariants']+=1
+                        self.exclusions.append({'pathID':key,'days':sorted(dates),'reason':'unmarkedDecreasingSourceTimes'})
+                        continue
                 effective=key if (lo,hi)==(0,len(points)-1) else f'{key}:section:{lo}-{hi}'
                 facilities=[]
                 for facility in path['facilities']:
@@ -315,6 +328,20 @@ def build(cache,output,base_url):
         try: store.add(parse_message(data))
         except Exception as e: raise ValueError(f'{source}: {e}') from e
         if index%10000==0: print(f'Parsed {index} messages',flush=True)
+    checks=[inventory['sourceCheckedAt']]
+    roots=[cache/str(y) for y in inventory.get('years',[])] if 'years' in inventory else [cache]
+    for source_root in roots:
+        source_inventory=json.loads((source_root/'inventory.json').read_text())
+        annual_checked=source_inventory['annual'].get('checkedAt')
+        if not annual_checked:
+            annual_path=source_root/f'JR{source_inventory["year"]}.zip'
+            annual_checked=dt.datetime.fromtimestamp(annual_path.stat().st_mtime,dt.timezone.utc).isoformat()
+        checks.append(annual_checked)
+        for batch in source_root.glob('20??-??.sqlite'):
+            with sqlite3.connect(batch) as cached:
+                oldest=cached.execute('SELECT min(checked_at) FROM files JOIN inventory USING(url)').fetchone()[0]
+                if oldest: checks.append(oldest)
+    inventory['sourceCheckedAt']=min(checks).replace('+00:00','Z')
     paths=list(store.resolve()); dates=[d for p in paths for d in p['days']]
     now=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
     metadata={'schemaVersion':1,'validFrom':min(dates),'validThrough':max(dates),'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'sourceURL':BASE}
@@ -332,11 +359,11 @@ def build(cache,output,base_url):
     for item in inputs:
         annual_path=cache/str(item['year'])/f'JR{item["year"]}.zip' if 'years' in inventory else cache/f'JR{item["year"]}.zip'
         item['annual']['sha256']=hashlib.sha256(annual_path.read_bytes()).hexdigest()
-    report={'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'years':[i['year'] for i in inputs],'amendments':inventory['expectedAmendments'],'messages':dict(store.counts),'catalog':counts,'sha256':digest,'sources':inputs}
+    report={'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'years':[i['year'] for i in inputs],'amendments':inventory['expectedAmendments'],'messages':dict(store.counts),'catalog':counts,'sha256':digest,'sources':inputs,'excludedVariants':store.exclusions}
     (output/'source-check.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2),flush=True)
     return manifest
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--cache',type=pathlib.Path,default=pathlib.Path('.cache/cisjr'));p.add_argument('--output',type=pathlib.Path,default=pathlib.Path('site/catalog/v1'));p.add_argument('--base-url',default='https://fbukovina.github.io/raily-timetables/catalog/v1')
+    p=argparse.ArgumentParser();p.add_argument('--cache',type=pathlib.Path,default=pathlib.Path('.cache/cisjr'));p.add_argument('--output',type=pathlib.Path,default=pathlib.Path('site/catalog/v1'));p.add_argument('--base-url',default='https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/v1')
     a=p.parse_args();build(a.cache,a.output,a.base_url)
