@@ -54,6 +54,10 @@ class CatalogTests(unittest.TestCase):
         result=resolve(path(),path(core='NEW',created='2026-09-04T10:00:00',start='2026-10-01',bits='1',related='ORIGINAL',extra=extra))
         old=next(p for p in result if 'ORIGINAL' in p['id']);new=next(p for p in result if 'NEW' in p['id'])
         self.assertNotIn('2026-10-02',old['days']);self.assertIn('2026-10-01',old['days']);self.assertEqual(new['days'],{'2026-10-01'})
+    def test_actual_singular_original_calendar_matches_documented_plural(self):
+        extra=''.join(parameter(k,v) for k,v in [('CZReroute','1'),('CZOriginalCalendarStartDate','2026-10-02'),('CZOriginalCalendarBitmap','1')])
+        replacement=path(core='NEW',created='2026-09-04T10:00:00',bits='1',related='ORIGINAL',extra=extra)
+        self.assertEqual(resolve(path(),replacement),resolve(path(),replacement.replace(b'CZOriginalCalendarBitmap',b'CZOriginalCalendarBitmaps')))
     def test_both_end_section_cancellations_preserve_boundary_stops(self):
         result=resolve(path(),cancel(section=('10001','10002')),cancel(section=('10003','10004')))
         partial=next(p for p in result if p['days']=={'2026-10-02'})

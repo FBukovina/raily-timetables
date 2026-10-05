@@ -3,10 +3,10 @@
   "validFrom": "2025-12-14",
   "validThrough": "2026-12-12",
   "sourceCheckedAt": "2026-10-05T08:03:59.234812Z",
-  "generatedAt": "2026-10-05T12:08:50Z",
+  "generatedAt": "2026-10-05T12:24:11Z",
   "sourceURL": "https://portal.cisjr.cz/pub/draha/celostatni/szdc/",
-  "catalogURL": "https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/v1/catalog-f2648392c7b3ffd5c6964b571fe9bf8b541e45f8a1671abaef3b605f520a2cc5.sqlite.gz",
-  "compressedBytes": 28417674,
-  "uncompressedBytes": 333627392,
-  "sha256": "f2648392c7b3ffd5c6964b571fe9bf8b541e45f8a1671abaef3b605f520a2cc5"
+  "catalogURL": "https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/v1/catalog-fa9cd4a54856ff1cbc0eb582ed141401757691847d5d04785732854b6a87db23.sqlite.gz",
+  "compressedBytes": 28421228,
+  "uncompressedBytes": 333623296,
+  "sha256": "fa9cd4a54856ff1cbc0eb582ed141401757691847d5d04785732854b6a87db23"
 }

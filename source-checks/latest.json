@@ -1,6 +1,6 @@
 {
   "sourceCheckedAt": "2026-10-05T08:03:59.234812Z",
-  "generatedAt": "2026-10-05T12:08:50Z",
+  "generatedAt": "2026-10-05T12:24:11Z",
   "years": [
     2026
   ],
@@ -13,12 +13,12 @@
     "excludedInvalidTimingVariants": 2
   },
   "catalog": {
-    "variants": 43064,
-    "serviceDays": 2847775,
-    "calls": 457142,
+    "variants": 43063,
+    "serviceDays": 2847695,
+    "calls": 457127,
     "stations": 2744
   },
-  "sha256": "f2648392c7b3ffd5c6964b571fe9bf8b541e45f8a1671abaef3b605f520a2cc5",
+  "sha256": "fa9cd4a54856ff1cbc0eb582ed141401757691847d5d04785732854b6a87db23",
   "sources": [
     {
       "year": 2026,
@@ -92,7 +92,7 @@
       ],
       "expectedAmendments": 172183,
       "complete": true,
-      "sourceCheckedAt": "2026-10-05T08:52:15.710721Z"
+      "sourceCheckedAt": "2026-10-05T08:03:59.234812Z"
     }
   ],
   "excludedVariants": [

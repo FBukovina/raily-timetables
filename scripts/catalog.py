@@ -168,8 +168,9 @@ def parse_message(data,codebooks=None):
             entry['calendar']=resolved
         if entry not in facilities: facilities.append(entry)
     original=None
-    if params.get('CZReroute')==['1'] and params.get('CZOriginalCalendarStartDate') and params.get('CZOriginalCalendarBitmaps'):
-        start=parse_date(params['CZOriginalCalendarStartDate'][0]); bits=''.join(params['CZOriginalCalendarBitmaps'])
+    original_bits=params.get('CZOriginalCalendarBitmap') or params.get('CZOriginalCalendarBitmaps')
+    if params.get('CZReroute')==['1'] and params.get('CZOriginalCalendarStartDate') and original_bits:
+        start=parse_date(params['CZOriginalCalendarStartDate'][0]); bits=''.join(original_bits)
         if set(bits)-{'0','1'} or len(bits)>800: raise ValueError('Invalid replacement calendar')
         original={(start+dt.timedelta(days=i)).isoformat() for i,c in enumerate(bits) if c=='1'}
     return {'kind':'path','id':key,'created':timestamp(required(root,'CZPTTCreation')),'days':calendar(info.find('PlannedCalendar')),'points':points,'name':params.get('CZTrainName',[''])[0],'facilities':facilities,'related':path_identity(root,True),'original':original}
