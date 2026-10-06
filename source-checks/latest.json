@@ -1,24 +1,24 @@
 {
-  "sourceCheckedAt": "2026-10-05T08:03:59.234812Z",
-  "generatedAt": "2026-10-05T12:24:11Z",
+  "sourceCheckedAt": "2026-10-06T10:15:59.520617Z",
+  "generatedAt": "2026-10-06T11:45:43Z",
   "years": [
     2026
   ],
-  "amendments": 172183,
+  "amendments": 173078,
   "messages": {
-    "path": 51172,
-    "cancel": 134263,
+    "path": 51439,
+    "cancel": 134891,
     "excludedCountertimeVariants": 269,
     "excludedForeignTimingVariants": 3,
     "excludedInvalidTimingVariants": 2
   },
   "catalog": {
-    "variants": 43063,
-    "serviceDays": 2847695,
-    "calls": 457127,
+    "variants": 43278,
+    "serviceDays": 2847513,
+    "calls": 459539,
     "stations": 2744
   },
-  "sha256": "fa9cd4a54856ff1cbc0eb582ed141401757691847d5d04785732854b6a87db23",
+  "sha256": "7047f0663c7b3841cd53c1c5840ea148ecd3cd337a6cbe2de28c5337a26d065a",
   "sources": [
     {
       "year": 2026,
@@ -26,7 +26,8 @@
         "url": "https://portal.cisjr.cz/pub/draha/celostatni/szdc/2026/JR2026.zip",
         "bytes": 25292951,
         "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
-        "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031"
+        "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
+        "checkedAt": "2026-10-06T10:15:59.520617Z"
       },
       "months": [
         {
@@ -86,13 +87,13 @@
         },
         {
           "name": "2026-10",
-          "count": 4581,
-          "inventorySHA256": "de81454cee86856fdeb1491163f5e4d6e8535e7a66435d46a0648eed6c0d0fb5"
+          "count": 5476,
+          "inventorySHA256": "5ebf1eac04ed9e33025ed5f064226e83d7fdca02205fd39d935a52e34cdb06f4"
         }
       ],
-      "expectedAmendments": 172183,
+      "expectedAmendments": 173078,
       "complete": true,
-      "sourceCheckedAt": "2026-10-05T08:03:59.234812Z"
+      "sourceCheckedAt": "2026-10-06T10:16:28.053872Z"
     }
   ],
   "excludedVariants": [
