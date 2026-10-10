@@ -1,0 +1,3885 @@
+{
+  "sourceCheckedAt": "2026-10-10T09:48:50.529607Z",
+  "generatedAt": "2026-10-10T11:46:04Z",
+  "years": [
+    2026
+  ],
+  "amendments": 176599,
+  "messages": {
+    "path": 52238,
+    "cancel": 137613,
+    "excludedCountertimeVariants": 269,
+    "excludedForeignTimingVariants": 3,
+    "excludedInvalidTimingVariants": 2
+  },
+  "catalog": {
+    "variants": 44003,
+    "serviceDays": 2850874,
+    "calls": 467425,
+    "stations": 2744
+  },
+  "sha256": "b718f63b3a9cf69a84bde02292a3d8dd31879a4cb18075ee3e75117bb26d62b9",
+  "sources": [
+    {
+      "year": 2026,
+      "annual": {
+        "url": "https://portal.cisjr.cz/pub/draha/celostatni/szdc/2026/JR2026.zip",
+        "bytes": 25292951,
+        "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
+        "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
+        "checkedAt": "2026-10-10T09:48:50.529607Z"
+      },
+      "months": [
+        {
+          "name": "2025-11",
+          "count": 46,
+          "inventorySHA256": "0e87b3a0c51dee3eadb0fbb3a595ee133ace0802d05d511aab2c2303f35b5f4e"
+        },
+        {
+          "name": "2025-12",
+          "count": 3726,
+          "inventorySHA256": "180a2dcca43652850a3ba5c9e0c981663f0801b271ba66fb3aa4d5fe8d1cbc6c"
+        },
+        {
+          "name": "2026-01",
+          "count": 6361,
+          "inventorySHA256": "4a5facc5b376506190a3ca8572455f6c6dbbdad94560984a2788759d47b02191"
+        },
+        {
+          "name": "2026-02",
+          "count": 7479,
+          "inventorySHA256": "9914f300cd353bedef33cbf68d6f00575e2768b9a7eec1ef472a8372ed38d8f8"
+        },
+        {
+          "name": "2026-03",
+          "count": 8763,
+          "inventorySHA256": "d6db158af9c3a72c78143e2008a093bec7faaa53d0e3ad9900c409a0a2a346b6"
+        },
+        {
+          "name": "2026-04",
+          "count": 24286,
+          "inventorySHA256": "ed77ef9db3e9edab2ec219c19a8bd28d01239c61437a8c843606791c3050d33a"
+        },
+        {
+          "name": "2026-05",
+          "count": 25209,
+          "inventorySHA256": "8a7b458b0bf6d969ac2b5847cc37e965278b12bb5e8c035116e96cf5b7a7af67"
+        },
+        {
+          "name": "2026-06",
+          "count": 21951,
+          "inventorySHA256": "b4e39195b3423db5f740ead4ee0a75e89da046380ee2ec2892afa0693dba8c66"
+        },
+        {
+          "name": "2026-07",
+          "count": 23993,
+          "inventorySHA256": "8d517e3b16a43645bac3d28f181d5954b141689b508e7ae699e18c4bb0f2ae3a"
+        },
+        {
+          "name": "2026-08",
+          "count": 22576,
+          "inventorySHA256": "9472bb396b25e8c71f09a937461dd68290651cf84d01c5b284699826a2c2b011"
+        },
+        {
+          "name": "2026-09",
+          "count": 23212,
+          "inventorySHA256": "a62885d71d9ef5f5c064f78247089a6712a6d462cb2074c56034065c37aa6a00"
+        },
+        {
+          "name": "2026-10",
+          "count": 8997,
+          "inventorySHA256": "e912e2b65ea19ab16100bbdc1e8584d0b921a3924c11047ba76fd30da1c9436e"
+        }
+      ],
+      "expectedAmendments": 176599,
+      "complete": true,
+      "sourceCheckedAt": "2026-10-10T09:49:24.817729Z"
+    }
+  ],
+  "excludedVariants": [
+    {
+      "pathID": "PA:0054:--KADR075614:01:2026",
+      "days": [
+        "2025-12-15",
+        "2025-12-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR075693:01:2026",
+      "days": [
+        "2026-01-14",
+        "2026-01-15",
+        "2026-01-16",
+        "2026-01-17",
+        "2026-01-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR076626:01:2026",
+      "days": [
+        "2026-01-11",
+        "2026-01-12",
+        "2026-01-13",
+        "2026-01-14"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR077879:01:2026",
+      "days": [
+        "2026-01-09",
+        "2026-01-10",
+        "2026-01-27",
+        "2026-01-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR077909:01:2026",
+      "days": [
+        "2026-01-09",
+        "2026-01-10",
+        "2026-01-27",
+        "2026-01-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR077916:01:2026",
+      "days": [
+        "2026-01-09",
+        "2026-01-10",
+        "2026-01-27",
+        "2026-01-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR077920:01:2026",
+      "days": [
+        "2026-01-09",
+        "2026-01-10",
+        "2026-01-27",
+        "2026-01-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR077937:01:2026",
+      "days": [
+        "2026-01-09",
+        "2026-01-10",
+        "2026-01-27",
+        "2026-01-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR077945:01:2026",
+      "days": [
+        "2026-01-10",
+        "2026-01-11",
+        "2026-01-28",
+        "2026-01-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR080386:01:2026",
+      "days": [
+        "2026-01-10",
+        "2026-01-11",
+        "2026-01-12",
+        "2026-01-13",
+        "2026-01-14",
+        "2026-01-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR080401:01:2026",
+      "days": [
+        "2026-01-10",
+        "2026-01-11",
+        "2026-01-12",
+        "2026-01-13",
+        "2026-01-14",
+        "2026-01-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR080475:01:2026",
+      "days": [
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28",
+        "2026-01-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR080489:01:2026",
+      "days": [
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28",
+        "2026-01-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR080514:01:2026",
+      "days": [
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28",
+        "2026-01-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR081234:01:2026",
+      "days": [
+        "2025-12-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR087227:01:2026",
+      "days": [
+        "2026-02-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR087228:01:2026",
+      "days": [
+        "2026-02-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR087229:01:2026",
+      "days": [
+        "2026-02-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR087230:01:2026",
+      "days": [
+        "2026-02-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097374:01:2026",
+      "days": [
+        "2026-01-31",
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097410:01:2026",
+      "days": [
+        "2026-02-01",
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11",
+        "2026-02-12",
+        "2026-02-13"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097417:01:2026",
+      "days": [
+        "2026-01-31",
+        "2026-02-14"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097422:01:2026",
+      "days": [
+        "2026-01-31",
+        "2026-02-01",
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11",
+        "2026-02-12",
+        "2026-02-13",
+        "2026-02-14"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097432:01:2026",
+      "days": [
+        "2026-02-01"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097444:01:2026",
+      "days": [
+        "2026-01-31",
+        "2026-02-01",
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11",
+        "2026-02-12",
+        "2026-02-13",
+        "2026-02-14"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR097474:01:2026",
+      "days": [
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR098454:01:2026",
+      "days": [
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR098458:01:2026",
+      "days": [
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR098468:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR098471:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR098477:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR098483:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR100023:01:2026",
+      "days": [
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-06",
+        "2026-02-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR100025:01:2026",
+      "days": [
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-06",
+        "2026-02-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR100028:01:2026",
+      "days": [
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-06",
+        "2026-02-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR100032:01:2026",
+      "days": [
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-06",
+        "2026-02-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102564:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102570:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102577:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-21",
+        "2026-02-22",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102580:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-21",
+        "2026-02-22",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102584:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102586:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102587:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102588:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102590:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102591:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102593:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102596:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102599:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102602:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102604:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102605:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102606:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102609:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102611:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102616:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102621:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102622:01:2026",
+      "days": [
+        "2026-02-21",
+        "2026-02-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102654:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102662:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102665:01:2026",
+      "days": [
+        "2026-01-31",
+        "2026-02-01",
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102678:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102690:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102710:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102714:01:2026",
+      "days": [
+        "2026-01-31",
+        "2026-02-01",
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102730:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR102737:01:2026",
+      "days": [
+        "2026-02-16",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR103086:01:2026",
+      "days": [
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-21",
+        "2026-02-26",
+        "2026-02-27",
+        "2026-02-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR103095:01:2026",
+      "days": [
+        "2026-02-06",
+        "2026-02-07",
+        "2026-02-08",
+        "2026-02-09",
+        "2026-02-22",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR110818:01:2026",
+      "days": [
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR110931:01:2026",
+      "days": [
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR116842:01:2026",
+      "days": [
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR120575:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR120578:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR120581:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR120584:01:2026",
+      "days": [
+        "2026-03-11",
+        "2026-03-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133290:01:2026",
+      "days": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133316:01:2026",
+      "days": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133320:01:2026",
+      "days": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133328:01:2026",
+      "days": [
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133332:01:2026",
+      "days": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133348:01:2026",
+      "days": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133351:01:2026",
+      "days": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR133353:01:2026",
+      "days": [
+        "2026-03-14",
+        "2026-03-15",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR134038:01:2026",
+      "days": [
+        "2026-03-07",
+        "2026-03-12",
+        "2026-03-14",
+        "2026-03-18",
+        "2026-03-19",
+        "2026-03-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR134062:01:2026",
+      "days": [
+        "2026-03-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR134840:01:2026",
+      "days": [
+        "2026-03-21",
+        "2026-03-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR135826:01:2026",
+      "days": [
+        "2026-03-23"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR141320:01:2026",
+      "days": [
+        "2026-03-14",
+        "2026-03-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148227:01:2026",
+      "days": [
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148232:01:2026",
+      "days": [
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10",
+        "2026-04-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148750:01:2026",
+      "days": [
+        "2026-04-17",
+        "2026-04-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148751:01:2026",
+      "days": [
+        "2026-04-17",
+        "2026-04-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148752:01:2026",
+      "days": [
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10",
+        "2026-04-11",
+        "2026-04-12",
+        "2026-04-13",
+        "2026-04-17",
+        "2026-04-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148754:01:2026",
+      "days": [
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10",
+        "2026-04-11",
+        "2026-04-12",
+        "2026-04-13",
+        "2026-04-17",
+        "2026-04-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148756:01:2026",
+      "days": [
+        "2026-04-11",
+        "2026-04-12",
+        "2026-04-13",
+        "2026-04-17",
+        "2026-04-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR148764:01:2026",
+      "days": [
+        "2026-04-12",
+        "2026-04-13",
+        "2026-04-14",
+        "2026-04-18",
+        "2026-04-19"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR149908:01:2026",
+      "days": [
+        "2026-04-18",
+        "2026-04-19"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR158001:01:2026",
+      "days": [
+        "2026-03-23",
+        "2026-03-24"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR158011:01:2026",
+      "days": [
+        "2026-03-23",
+        "2026-03-24"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR158020:01:2026",
+      "days": [
+        "2026-03-23",
+        "2026-03-24"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR158023:01:2026",
+      "days": [
+        "2026-03-23",
+        "2026-03-24"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR160417:01:2026",
+      "days": [
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR160460:01:2026",
+      "days": [
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR160551:01:2026",
+      "days": [
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR161298:01:2026",
+      "days": [
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR161497:01:2026",
+      "days": [
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR164659:01:2026",
+      "days": [
+        "2026-04-11",
+        "2026-04-12",
+        "2026-04-18",
+        "2026-04-19"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR164684:01:2026",
+      "days": [
+        "2026-04-09",
+        "2026-04-10",
+        "2026-04-13",
+        "2026-04-14",
+        "2026-04-15",
+        "2026-04-16",
+        "2026-04-17",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR170618:01:2026",
+      "days": [
+        "2026-04-24"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR172320:01:2026",
+      "days": [
+        "2026-04-13",
+        "2026-04-14",
+        "2026-04-15",
+        "2026-04-16",
+        "2026-04-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR172333:01:2026",
+      "days": [
+        "2026-04-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR179374:01:2026",
+      "days": [
+        "2026-04-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR179379:01:2026",
+      "days": [
+        "2026-04-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR179384:01:2026",
+      "days": [
+        "2026-04-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR179390:01:2026",
+      "days": [
+        "2026-04-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR188229:01:2026",
+      "days": [
+        "2026-05-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR205928:01:2026",
+      "days": [
+        "2026-06-27",
+        "2026-06-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214091:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214095:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214100:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214102:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214104:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214108:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214112:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214119:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214120:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214125:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214127:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214129:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214131:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214134:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214136:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214137:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214140:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214141:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214147:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214151:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214153:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR214154:01:2026",
+      "days": [
+        "2026-05-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225024:01:2026",
+      "days": [
+        "2026-06-15",
+        "2026-06-16",
+        "2026-06-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225027:01:2026",
+      "days": [
+        "2026-06-15",
+        "2026-06-16",
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225038:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225058:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225065:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225074:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225077:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225087:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR225091:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR227575:01:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR232470:01:2026",
+      "days": [
+        "2026-06-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR232479:01:2026",
+      "days": [
+        "2026-06-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR232482:01:2026",
+      "days": [
+        "2026-06-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR241047:03:2026",
+      "days": [
+        "2026-06-17",
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR241300:01:2026",
+      "days": [
+        "2026-07-25",
+        "2026-07-26"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR242326:01:2026",
+      "days": [
+        "2026-06-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR251429:01:2026",
+      "days": [
+        "2026-06-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR251434:01:2026",
+      "days": [
+        "2026-06-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR251460:01:2026",
+      "days": [
+        "2026-06-29"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR254352:01:2026",
+      "days": [
+        "2026-07-28",
+        "2026-07-29",
+        "2026-07-30"
+      ],
+      "reason": "inconsistentInformationalForeignTimes"
+    },
+    {
+      "pathID": "PA:0054:--KADR254365:01:2026",
+      "days": [
+        "2026-07-19",
+        "2026-07-20",
+        "2026-07-21",
+        "2026-07-23",
+        "2026-07-24",
+        "2026-07-25",
+        "2026-07-26",
+        "2026-07-27"
+      ],
+      "reason": "inconsistentInformationalForeignTimes"
+    },
+    {
+      "pathID": "PA:0054:--KADR254380:01:2026",
+      "days": [
+        "2026-07-22"
+      ],
+      "reason": "inconsistentInformationalForeignTimes"
+    },
+    {
+      "pathID": "PA:0054:--KADR255237:01:2026",
+      "days": [
+        "2026-08-11",
+        "2026-08-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR266366:01:2026",
+      "days": [
+        "2026-08-26"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR269244:01:2026",
+      "days": [
+        "2026-07-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR269246:01:2026",
+      "days": [
+        "2026-07-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR269250:01:2026",
+      "days": [
+        "2026-07-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272587:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272613:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272615:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272617:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272620:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272621:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272622:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272624:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272631:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272632:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272633:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272634:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272639:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272640:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272643:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272645:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272647:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272649:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272651:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272653:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272654:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR272655:01:2026",
+      "days": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR275218:01:2026",
+      "days": [
+        "2026-08-09"
+      ],
+      "reason": "unmarkedDecreasingSourceTimes"
+    },
+    {
+      "pathID": "PA:0054:--KADR275221:01:2026",
+      "days": [
+        "2026-08-09",
+        "2026-08-15"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR279611:01:2026",
+      "days": [
+        "2026-08-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR280064:01:2026",
+      "days": [
+        "2026-07-22",
+        "2026-07-23",
+        "2026-07-24",
+        "2026-07-25",
+        "2026-07-26",
+        "2026-07-27",
+        "2026-07-29",
+        "2026-07-30"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR295486:01:2026",
+      "days": [
+        "2026-08-08",
+        "2026-08-09",
+        "2026-08-10",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-14",
+        "2026-08-15",
+        "2026-08-16",
+        "2026-08-17",
+        "2026-08-19"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR297234:01:2026",
+      "days": [
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR297236:01:2026",
+      "days": [
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR299057:02:2026",
+      "days": [
+        "2026-08-15"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR301429:01:2026",
+      "days": [
+        "2026-09-17"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR308264:01:2026",
+      "days": [
+        "2026-10-17",
+        "2026-10-18"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR309847:01:2026",
+      "days": [
+        "2026-08-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR320225:01:2026",
+      "days": [
+        "2026-09-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR320945:01:2026",
+      "days": [
+        "2026-08-31"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR322398:01:2026",
+      "days": [
+        "2026-09-08",
+        "2026-09-09"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR322401:01:2026",
+      "days": [
+        "2026-09-08",
+        "2026-09-09"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR322407:01:2026",
+      "days": [
+        "2026-09-08",
+        "2026-09-09"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR322412:01:2026",
+      "days": [
+        "2026-09-08",
+        "2026-09-09"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR323791:01:2026",
+      "days": [
+        "2026-10-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332182:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332187:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332189:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332199:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332206:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332212:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332220:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332232:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332241:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332250:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332252:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332259:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332263:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332271:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332282:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332294:01:2026",
+      "days": [
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332298:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332304:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332309:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332554:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332561:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332568:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332570:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332576:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332584:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332591:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332600:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332602:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332608:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332611:01:2026",
+      "days": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332620:01:2026",
+      "days": [
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR332623:01:2026",
+      "days": [
+        "2026-09-28"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR333989:03:2026",
+      "days": [
+        "2026-09-12",
+        "2026-09-13",
+        "2026-09-14",
+        "2026-09-15"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR334001:03:2026",
+      "days": [
+        "2026-09-12",
+        "2026-09-13",
+        "2026-09-14",
+        "2026-09-15"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR340561:01:2026",
+      "days": [
+        "2026-09-20"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR341504:01:2026",
+      "days": [
+        "2026-09-25"
+      ],
+      "reason": "unmarkedDecreasingSourceTimes"
+    },
+    {
+      "pathID": "PA:0054:--KADR348061:01:2026",
+      "days": [
+        "2026-09-26"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR349488:01:2026",
+      "days": [
+        "2026-09-30"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR349801:01:2026",
+      "days": [
+        "2026-10-01"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR349863:01:2026",
+      "days": [
+        "2026-10-01"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR349875:01:2026",
+      "days": [
+        "2026-10-01"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR349897:01:2026",
+      "days": [
+        "2026-10-01"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR349911:01:2026",
+      "days": [
+        "2026-10-01"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR353281:02:2026",
+      "days": [
+        "2026-09-30"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354108:01:2026",
+      "days": [
+        "2026-09-30"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354150:01:2026",
+      "days": [
+        "2026-09-30"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354731:01:2026",
+      "days": [
+        "2026-10-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354738:01:2026",
+      "days": [
+        "2026-10-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354749:01:2026",
+      "days": [
+        "2026-10-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354754:01:2026",
+      "days": [
+        "2026-10-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354757:01:2026",
+      "days": [
+        "2026-10-02"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354774:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354777:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354779:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354786:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354792:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354794:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR354798:01:2026",
+      "days": [
+        "2026-10-03"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357339:01:2026",
+      "days": [
+        "2026-10-05",
+        "2026-10-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357341:01:2026",
+      "days": [
+        "2026-10-05",
+        "2026-10-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357345:01:2026",
+      "days": [
+        "2026-10-05",
+        "2026-10-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357348:01:2026",
+      "days": [
+        "2026-10-05",
+        "2026-10-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357354:01:2026",
+      "days": [
+        "2026-10-05",
+        "2026-10-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357356:01:2026",
+      "days": [
+        "2026-10-05",
+        "2026-10-06"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357661:01:2026",
+      "days": [
+        "2026-10-11"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR357667:01:2026",
+      "days": [
+        "2026-10-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR359632:02:2026",
+      "days": [
+        "2026-10-10"
+      ],
+      "reason": "declaredOperationalCountertime"
+    }
+  ]
+}

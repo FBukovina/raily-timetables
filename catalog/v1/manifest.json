@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "validFrom": "2025-12-14",
+  "validThrough": "2026-12-12",
+  "sourceCheckedAt": "2026-10-10T09:48:50.529607Z",
+  "generatedAt": "2026-10-10T11:46:04Z",
+  "sourceURL": "https://portal.cisjr.cz/pub/draha/celostatni/szdc/",
+  "catalogURL": "https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/v1/catalog-b718f63b3a9cf69a84bde02292a3d8dd31879a4cb18075ee3e75117bb26d62b9.sqlite.gz",
+  "compressedBytes": 28656368,
+  "uncompressedBytes": 335577088,
+  "sha256": "b718f63b3a9cf69a84bde02292a3d8dd31879a4cb18075ee3e75117bb26d62b9"
+}
