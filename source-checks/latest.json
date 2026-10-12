@@ -1,24 +1,24 @@
 {
-  "sourceCheckedAt": "2026-10-11T09:58:57.945446Z",
-  "generatedAt": "2026-10-11T11:54:45Z",
+  "sourceCheckedAt": "2026-10-12T10:46:48.120961Z",
+  "generatedAt": "2026-10-12T12:29:12Z",
   "years": [
     2026
   ],
-  "amendments": 177035,
+  "amendments": 177647,
   "messages": {
-    "path": 52250,
-    "cancel": 138037,
+    "path": 52352,
+    "cancel": 138547,
     "excludedCountertimeVariants": 269,
     "excludedForeignTimingVariants": 3,
     "excludedInvalidTimingVariants": 2
   },
   "catalog": {
-    "variants": 44013,
-    "serviceDays": 2850851,
-    "calls": 467533,
+    "variants": 44115,
+    "serviceDays": 2851145,
+    "calls": 468415,
     "stations": 2744
   },
-  "sha256": "6c6186f8afe8eaf32f6dbf0edc648376248275733c84e5ee930b7e60c61e7383",
+  "sha256": "cd2ecb90a53a35ac7bd55abb1039f7e1c3235229a9525b945358259bd883ab7f",
   "sources": [
     {
       "year": 2026,
@@ -27,7 +27,7 @@
         "bytes": 25292951,
         "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
         "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
-        "checkedAt": "2026-10-11T09:58:57.945446Z"
+        "checkedAt": "2026-10-12T10:46:48.120961Z"
       },
       "months": [
         {
@@ -87,13 +87,13 @@
         },
         {
           "name": "2026-10",
-          "count": 9433,
-          "inventorySHA256": "348f2ea6e4ca8c4cf1b2aa893113aceb4daa3d772810d0c320c69fcdb29f4a83"
+          "count": 10045,
+          "inventorySHA256": "86e651ae10c3834d9bd111b877642df5001a2f3a20855f49a11a1db3c6b2a1cf"
         }
       ],
-      "expectedAmendments": 177035,
+      "expectedAmendments": 177647,
       "complete": true,
-      "sourceCheckedAt": "2026-10-11T09:59:30.203816Z"
+      "sourceCheckedAt": "2026-10-12T10:47:18.245377Z"
     }
   ],
   "excludedVariants": [
