@@ -81,7 +81,7 @@ jobs:
       - name: Record successful source check
         if: steps.clock.outputs.enabled == 'true'
         run: |
-          cp site/catalog/v1/source-check.json source-checks/latest.json
+          cp site/catalog/v2/source-check.json source-checks/latest.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add source-checks/latest.json

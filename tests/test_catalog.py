@@ -2,14 +2,16 @@ import datetime as dt
 import gzip
 import hashlib
 import json
+import lzma
 import pathlib
 import sqlite3
 import sys
 import tempfile
 import unittest
 sys.path.insert(0,str(pathlib.Path(__file__).resolve().parents[1]/'scripts'))
-from catalog import Timetables,parse_message,write_catalog,calendar,normalized,read_sources
+from catalog import Timetables,parse_message,write_catalog,package,calendar,normalized,read_sources
 from download import xml_bytes
+import publish
 
 # Hand-authored deterministic XML, based on the public v1.09.06 schema.
 # These fictional trains and locations must never ship as production data.
@@ -111,9 +113,65 @@ class CatalogTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             output=pathlib.Path(folder)/'catalog.sqlite';counts=write_catalog(resolve(path()),output,{'validFrom':'2026-10-01'})
             db=sqlite3.connect(output)
-            self.assertEqual(db.execute('PRAGMA user_version').fetchone()[0],1)
+            self.assertEqual(db.execute('PRAGMA user_version').fetchone()[0],2)
             self.assertEqual(db.execute('PRAGMA foreign_key_check').fetchall(),[])
-            self.assertEqual(counts['calls'],4);self.assertEqual(db.execute('SELECT count(*) FROM service_days').fetchone()[0],3)
+            self.assertEqual(counts['calls'],4);self.assertEqual(counts['serviceDays'],3)
+            self.assertEqual(db.execute('SELECT count(*) FROM variant_days').fetchone()[0],1)
+            self.assertIsNone(db.execute("SELECT name FROM sqlite_master WHERE name LIKE 'service_days%'").fetchone())
+    def test_schema_2_stores_one_operating_calendar_per_variant(self):
+        extra=parameter('CZCentralPTTNote','40|CZ10001||CZ10004||0|')
+        with tempfile.TemporaryDirectory() as folder:
+            output=pathlib.Path(folder)/'catalog.sqlite';write_catalog(resolve(path(bits='11010',extra=extra)),output,{})
+            db=sqlite3.connect(output)
+            # Trailing non-operating days are not stored: last_day is the last run.
+            self.assertEqual(db.execute('SELECT first_day,last_day,days FROM variant_days').fetchall(),[('2026-10-01','2026-10-04','1101')])
+            self.assertEqual(json.loads(db.execute('SELECT facilities_json FROM variants').fetchone()[0]),[{'code':40,'startSequence':0,'endSequence':3}])
+            with self.assertRaises(sqlite3.IntegrityError): db.execute("INSERT INTO variant_days VALUES('x','2026-10-01','2026-10-03','110')")
+            with self.assertRaises(sqlite3.IntegrityError): db.execute("INSERT INTO variant_days VALUES('x','2026-10-01','2026-10-03','1 1')")
+    def test_operating_calendar_round_trips_through_the_app_day_predicate(self):
+        # The app's query; without the range guard substr() counts from the end.
+        runs="""SELECT count(*) FROM variant_days d WHERE :day BETWEEN d.first_day AND d.last_day
+            AND substr(d.days,CAST(julianday(:day)-julianday(d.first_day) AS INTEGER)+1,1)='1'"""
+        bits='1001100000000000000000000000001'
+        days=resolve(path(bits=bits,start='2026-10-24'))[0]['days']
+        with tempfile.TemporaryDirectory() as folder:
+            output=pathlib.Path(folder)/'catalog.sqlite';write_catalog(resolve(path(bits=bits,start='2026-10-24')),output,{})
+            db=sqlite3.connect(output)
+            probe=[(dt.date(2026,10,24)+dt.timedelta(days=i)).isoformat() for i in range(-40,len(bits)+40)]
+            self.assertEqual({d for d in probe if db.execute(runs,{'day':d}).fetchone()[0]},days)
+            self.assertEqual(db.execute('SELECT length(days) FROM variant_days').fetchone()[0],len(bits))
+    def test_schema_1_keeps_day_rows_and_facility_station_names(self):
+        extra=parameter('CZCentralPTTNote','40|CZ10002||CZ10004||0|')
+        with tempfile.TemporaryDirectory() as folder:
+            output=pathlib.Path(folder)/'catalog.sqlite';write_catalog(resolve(path(extra=extra)),output,{},schema=1)
+            db=sqlite3.connect(output)
+            self.assertEqual(db.execute('PRAGMA user_version').fetchone()[0],1)
+            self.assertEqual(db.execute('SELECT day FROM service_days ORDER BY day').fetchall(),[('2026-10-01',),('2026-10-02',),('2026-10-03',)])
+            self.assertEqual(json.loads(db.execute('SELECT facilities_json FROM variants').fetchone()[0]),
+                [{'code':40,'startSequence':1,'endSequence':3,'startStationName':'Stop 10002','endStationName':'Stop 10004'}])
+    def test_each_schema_is_packaged_and_verified_in_its_own_folder(self):
+        minimums=publish.MIN_STATIONS,publish.MIN_VARIANTS
+        publish.MIN_STATIONS=publish.MIN_VARIANTS=1
+        self.addCleanup(lambda:(setattr(publish,'MIN_STATIONS',minimums[0]),setattr(publish,'MIN_VARIANTS',minimums[1])))
+        with tempfile.TemporaryDirectory() as temp:
+            manifests={}
+            for schema in (1,2):
+                folder=pathlib.Path(temp)/f'v{schema}';folder.mkdir()
+                metadata={'schemaVersion':schema,'validFrom':'2026-10-01','validThrough':'2026-10-03','sourceCheckedAt':'2026-10-01T05:00:00Z','generatedAt':'2026-10-01T06:00:00Z'}
+                write_catalog(resolve(path()),folder/'NationalTimetable.sqlite',metadata,schema=schema)
+                manifests[schema]=package(folder/'NationalTimetable.sqlite',folder,publish.base(schema),metadata)
+                self.assertEqual(publish.verify(folder),manifests[schema])
+            self.assertNotIn('compression',manifests[1]);self.assertTrue(manifests[1]['catalogURL'].endswith('.sqlite.gz'))
+            self.assertEqual(manifests[2]['compression'],'xz');self.assertTrue(manifests[2]['catalogURL'].startswith(publish.ROOT+'/v2/catalog-'))
+            self.assertTrue(manifests[2]['catalogURL'].endswith('.sqlite.xz'))
+            v2=pathlib.Path(temp)/'v2';packed=(v2/publish.catalog_name(manifests[2])).read_bytes()
+            self.assertEqual(lzma.decompress(packed),(v2/'NationalTimetable.sqlite').read_bytes())
+            with self.assertRaisesRegex(ValueError,'trailing'): publish.expand(packed+b'\0',"xz",1<<20)
+            with self.assertRaisesRegex(ValueError,'trailing'): publish.expand(packed[:-1],"xz",1<<20)
+            # A schema 2 manifest cannot be served where schema 1 apps look.
+            (pathlib.Path(temp)/'v1'/'manifest.json').write_text(json.dumps(manifests[2]))
+            with self.assertRaisesRegex(ValueError,'Unsupported schema'): publish.verify(pathlib.Path(temp)/'v1')
+            with self.assertRaisesRegex(ValueError,'Unsupported compression'): publish.compression({**manifests[1],'compression':'xz'})
     def test_incomplete_inventory_cannot_be_published(self):
         with tempfile.TemporaryDirectory() as folder:
             root=pathlib.Path(folder);(root/'inventory.json').write_text('{"complete":false}')
