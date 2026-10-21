@@ -5,22 +5,37 @@ Official semantics: PA identity, latest CZPTTCreation, cancellation calendars an
 explicit midnight Offset. No interpolation, realtime claims or location guessing.
 """
 from __future__ import annotations
-import argparse, collections, datetime as dt, gzip, hashlib, json, pathlib, re, shutil
+import argparse, collections, datetime as dt, gzip, hashlib, json, lzma, pathlib, re, shutil
 import sqlite3, unicodedata, xml.etree.ElementTree as ET, zipfile
 from download import xml_bytes, MAX_BYTES, BASE
-SCHEMA = '''
-PRAGMA user_version=1;
+TABLES = '''
 PRAGMA foreign_keys=ON;
 CREATE TABLE metadata(key TEXT PRIMARY KEY,value TEXT NOT NULL) WITHOUT ROWID;
 CREATE TABLE stations(id TEXT PRIMARY KEY,name TEXT NOT NULL,normalized_name TEXT NOT NULL,country TEXT NOT NULL,code TEXT NOT NULL,latitude REAL,longitude REAL) WITHOUT ROWID;
 CREATE TABLE variants(id TEXT PRIMARY KEY,train_number TEXT NOT NULL,title TEXT NOT NULL,operator_name TEXT NOT NULL,destination TEXT NOT NULL,facilities_json TEXT NOT NULL DEFAULT '[]') WITHOUT ROWID;
-CREATE TABLE service_days(variant_id TEXT NOT NULL REFERENCES variants(id),day TEXT NOT NULL,PRIMARY KEY(variant_id,day)) WITHOUT ROWID;
 CREATE TABLE calls(variant_id TEXT NOT NULL REFERENCES variants(id),sequence INTEGER NOT NULL,station_id TEXT NOT NULL REFERENCES stations(id),arrival_seconds INTEGER,arrival_day_offset INTEGER,departure_seconds INTEGER,departure_day_offset INTEGER,allows_boarding INTEGER NOT NULL CHECK(allows_boarding IN(0,1)),allows_alighting INTEGER NOT NULL CHECK(allows_alighting IN(0,1)),PRIMARY KEY(variant_id,sequence),CHECK(arrival_seconds IS NULL OR arrival_seconds BETWEEN 0 AND 86399),CHECK(departure_seconds IS NULL OR departure_seconds BETWEEN 0 AND 86399),CHECK(arrival_day_offset IS NULL OR arrival_day_offset BETWEEN -7 AND 7),CHECK(departure_day_offset IS NULL OR departure_day_offset BETWEEN -7 AND 7)) WITHOUT ROWID;
 CREATE INDEX stations_name ON stations(normalized_name);
 CREATE INDEX variants_number ON variants(train_number);
-CREATE INDEX service_days_day ON service_days(day,variant_id);
 CREATE INDEX calls_station ON calls(station_id,variant_id,sequence);
 '''
+# Schema 2 stores each variant's operating dates as one calendar, the same
+# {start,'0'/'1' per day} form facility calendars use. A day row per date took
+# about three quarters of the schema 1 file.
+SCHEMAS = {2: 'PRAGMA user_version=2;'+TABLES+'''
+CREATE TABLE variant_days(variant_id TEXT PRIMARY KEY REFERENCES variants(id),first_day TEXT NOT NULL,last_day TEXT NOT NULL,days TEXT NOT NULL,CHECK(date(first_day) IS first_day AND date(last_day) IS last_day),CHECK(length(days)=julianday(last_day)-julianday(first_day)+1),CHECK(days GLOB '1*' AND days GLOB '*1' AND NOT days GLOB '*[^01]*')) WITHOUT ROWID;
+''',
+# Legacy: published at catalog/v1 until no shipped app reads it.
+1: 'PRAGMA user_version=1;'+TABLES+'''
+CREATE TABLE service_days(variant_id TEXT NOT NULL REFERENCES variants(id),day TEXT NOT NULL,PRIMARY KEY(variant_id,day)) WITHOUT ROWID;
+CREATE INDEX service_days_day ON service_days(day,variant_id);
+'''}
+SCHEMA_VERSION = 2
+# Shipped schema 1 clients only inflate gzip.
+COMPRESSION = {1:'gzip',2:'xz'}
+EXTENSIONS = {'gzip':'gz','xz':'xz'}
+# liblzma's default preset: an 8 MiB dictionary keeps decoding on the phone
+# under 10 MiB. Preset 9 (64 MiB) saved about 0.2 MB of 4.75.
+XZ_PRESET = 6
 SERVICE_CODES={10,11,12,13,14,17,34,18,24,25,19,20,21,22,26,27,28,29,36,30,40,41,33,38,39,42,46}
 
 def normalized(value):
@@ -249,7 +264,7 @@ class Timetables:
                     covered=[i for i,c in enumerate(calls) if facility['sourceStart']<=c['source_sequence']<=facility['sourceEnd']]
                     if not covered: continue
                     first,last=covered[0],covered[-1]
-                    item={'code':facility['code'],'startSequence':first,'endSequence':last,'startStationName':calls[first]['name'],'endStationName':calls[last]['name']}
+                    item={'code':facility['code'],'startSequence':first,'endSequence':last}
                     if 'calendar' in facility: item['calendar']=facility['calendar']
                     facilities.append(item)
                 yield dict(path,id=effective,calls=calls,days=dates,facilities=facilities)
@@ -298,9 +313,23 @@ def load_codebooks():
     categories={row['KodTAF']:row['Kod'] for row in data['SeznamKomercniDruhVlaku']}
     return operators,categories
 
-def write_catalog(paths,output,metadata,operators=None,categories=None):
+def day_calendar(days):
+    """Operating dates -> (first_day, last_day, one '0'/'1' per day from first to last)."""
+    dates=sorted(dt.date.fromisoformat(d) for d in days)
+    if not dates: raise ValueError('Variant without operating dates')
+    bits=['0']*((dates[-1]-dates[0]).days+1)
+    for d in dates: bits[(d-dates[0]).days]='1'
+    return dates[0].isoformat(),dates[-1].isoformat(),''.join(bits)
+
+def legacy_facility(item,calls):
+    # Schema 1 also named each section's end stations; no client reads them.
+    legacy={'code':item['code'],'startSequence':item['startSequence'],'endSequence':item['endSequence'],'startStationName':calls[item['startSequence']]['name'],'endStationName':calls[item['endSequence']]['name']}
+    if 'calendar' in item: legacy['calendar']=item['calendar']
+    return legacy
+
+def write_catalog(paths,output,metadata,operators=None,categories=None,schema=SCHEMA_VERSION):
     operators=operators or {}; categories=categories or {}; temp=output.with_suffix('.partial')
-    temp.unlink(missing_ok=True); db=sqlite3.connect(temp); db.executescript(SCHEMA)
+    temp.unlink(missing_ok=True); db=sqlite3.connect(temp); db.executescript(SCHEMAS[schema])
     db.executemany('INSERT INTO metadata VALUES(?,?)',((k,str(v)) for k,v in metadata.items()))
     counts=collections.Counter()
     for path in paths:
@@ -309,8 +338,10 @@ def write_catalog(paths,output,metadata,operators=None,categories=None):
         title=' '.join(p for p in (category,number,path['name']) if p)
         codes=list(dict.fromkeys(c['operator'] for c in calls if c['operator']))
         operator=' / '.join(operators.get(c,f'RICS {c}') for c in codes)
-        db.execute('INSERT INTO variants VALUES(?,?,?,?,?,?)',(path['id'],number,title,operator,calls[-1]['name'],json.dumps(path['facilities'],ensure_ascii=False,separators=(',',':'))))
-        db.executemany('INSERT INTO service_days VALUES(?,?)',((path['id'],d) for d in sorted(path['days'])))
+        facilities=path['facilities'] if schema>=2 else [legacy_facility(f,calls) for f in path['facilities']]
+        db.execute('INSERT INTO variants VALUES(?,?,?,?,?,?)',(path['id'],number,title,operator,calls[-1]['name'],json.dumps(facilities,ensure_ascii=False,separators=(',',':'))))
+        if schema>=2: db.execute('INSERT INTO variant_days VALUES(?,?,?,?)',(path['id'],*day_calendar(path['days'])))
+        else: db.executemany('INSERT INTO service_days VALUES(?,?)',((path['id'],d) for d in sorted(path['days'])))
         for sequence,p in enumerate(calls):
             db.execute('INSERT OR IGNORE INTO stations VALUES(?,?,?,?,?,?,?)',(p['id'],p['name'],normalized(p['name']),p['country'],p['code'],None,None))
             db.execute('INSERT INTO calls VALUES(?,?,?,?,?,?,?,?,?)',(path['id'],sequence,p['id'],p['arrival_seconds'],p['arrival_day_offset'],p['departure_seconds'],p['departure_day_offset'],p['allows_boarding'],p['allows_alighting']))
@@ -321,7 +352,24 @@ def write_catalog(paths,output,metadata,operators=None,categories=None):
     db.commit(); db.execute('VACUUM'); db.close(); temp.replace(output)
     return dict(counts)
 
-def build(cache,output,base_url):
+def package(database,output,base_url,metadata):
+    """Compress a written catalog under its digest, then advertise it in manifest.json."""
+    schema=int(metadata['schemaVersion']); compression=COMPRESSION[schema]; raw=database.read_bytes()
+    if compression=='xz': packed=lzma.compress(raw,format=lzma.FORMAT_XZ,check=lzma.CHECK_CRC64,preset=XZ_PRESET)
+    else: packed=gzip.compress(raw,compresslevel=9,mtime=0)
+    digest=hashlib.sha256(packed).hexdigest(); filename=f'catalog-{digest}.sqlite.{EXTENSIONS[compression]}'
+    (output/filename).write_bytes(packed)
+    manifest={**metadata,'catalogURL':f'{base_url.rstrip("/")}/{filename}','compressedBytes':len(packed),'uncompressedBytes':len(raw),'sha256':digest}
+    # Schema 1 manifests stay exactly as shipped clients decode them.
+    if schema>=2: manifest['compression']=compression
+    # Manifest replacement is last: a failure can never advertise an incomplete file.
+    previous=output/'manifest.json'
+    if previous.exists(): shutil.copy2(previous,output/'previous-manifest.json')
+    (output/'manifest.partial').write_text(json.dumps(manifest,indent=2)+'\n'); (output/'manifest.partial').replace(previous)
+    return manifest
+
+def build(cache,output,base_url,schemas=tuple(sorted(SCHEMAS))):
+    """Parse the sources once, then write one catalog per schema to output/v<schema>."""
     inventory=json.loads((cache/'inventory.json').read_text())
     if inventory.get('complete') is not True: raise ValueError('Refusing incomplete source inventory')
     store=Timetables()
@@ -345,26 +393,24 @@ def build(cache,output,base_url):
     inventory['sourceCheckedAt']=min(checks).replace('+00:00','Z')
     paths=list(store.resolve()); dates=[d for p in paths for d in p['days']]
     now=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    metadata={'schemaVersion':1,'validFrom':min(dates),'validThrough':max(dates),'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'sourceURL':BASE}
-    output.mkdir(parents=True,exist_ok=True); database=output/'NationalTimetable.sqlite'
-    counts=write_catalog(paths,database,metadata,*load_codebooks())
-    if counts['stations']<2000 or counts['variants']<5000: raise ValueError('Coverage sanity gate failed')
-    packed=gzip.compress(database.read_bytes(),compresslevel=9,mtime=0); digest=hashlib.sha256(packed).hexdigest(); filename=f'catalog-{digest}.sqlite.gz'
-    (output/filename).write_bytes(packed)
-    manifest={**metadata,'catalogURL':f'{base_url.rstrip("/")}/{filename}','compressedBytes':len(packed),'uncompressedBytes':database.stat().st_size,'sha256':digest}
-    # Manifest replacement is last: a failure can never advertise an incomplete file.
-    previous=output/'manifest.json'
-    if previous.exists(): shutil.copy2(previous,output/'previous-manifest.json')
-    (output/'manifest.partial').write_text(json.dumps(manifest,indent=2)+'\n'); (output/'manifest.partial').replace(previous)
     inputs=[json.loads((cache/str(y)/'inventory.json').read_text()) for y in inventory['years']] if 'years' in inventory else [inventory]
     for item in inputs:
         annual_path=cache/str(item['year'])/f'JR{item["year"]}.zip' if 'years' in inventory else cache/f'JR{item["year"]}.zip'
         item['annual']['sha256']=hashlib.sha256(annual_path.read_bytes()).hexdigest()
-    report={'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'years':[i['year'] for i in inputs],'amendments':inventory['expectedAmendments'],'messages':dict(store.counts),'catalog':counts,'sha256':digest,'sources':inputs,'excludedVariants':store.exclusions}
-    (output/'source-check.json').write_text(json.dumps(report,indent=2)+'\n')
-    print(json.dumps(report,indent=2),flush=True)
-    return manifest
+    operators,categories=load_codebooks(); manifests={}
+    for schema in schemas:
+        metadata={'schemaVersion':schema,'validFrom':min(dates),'validThrough':max(dates),'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'sourceURL':BASE}
+        folder=output/f'v{schema}'; folder.mkdir(parents=True,exist_ok=True); database=folder/'NationalTimetable.sqlite'
+        counts=write_catalog(paths,database,metadata,operators,categories,schema)
+        if counts['stations']<2000 or counts['variants']<5000: raise ValueError('Coverage sanity gate failed')
+        manifest=package(database,folder,f'{base_url.rstrip("/")}/v{schema}',metadata)
+        report={'schemaVersion':schema,'sourceCheckedAt':inventory['sourceCheckedAt'],'generatedAt':now,'years':[i['year'] for i in inputs],'amendments':inventory['expectedAmendments'],'messages':dict(store.counts),'catalog':counts,'sha256':manifest['sha256'],'sources':inputs,'excludedVariants':store.exclusions}
+        (folder/'source-check.json').write_text(json.dumps(report,indent=2)+'\n')
+        print(json.dumps({k:v for k,v in report.items() if k not in ('sources','excludedVariants')},indent=2),flush=True)
+        manifests[schema]=manifest
+    return manifests
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--cache',type=pathlib.Path,default=pathlib.Path('.cache/cisjr'));p.add_argument('--output',type=pathlib.Path,default=pathlib.Path('site/catalog/v1'));p.add_argument('--base-url',default='https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/v1')
-    a=p.parse_args();build(a.cache,a.output,a.base_url)
+    p=argparse.ArgumentParser();p.add_argument('--cache',type=pathlib.Path,default=pathlib.Path('.cache/cisjr'));p.add_argument('--output',type=pathlib.Path,default=pathlib.Path('site/catalog'),help='Writes v<schema> folders here')
+    p.add_argument('--base-url',default='https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog');p.add_argument('--schema',type=int,action='append',choices=sorted(SCHEMAS),help='Repeatable; default every schema')
+    a=p.parse_args();build(a.cache,a.output,a.base_url,tuple(sorted(set(a.schema))) if a.schema else tuple(sorted(SCHEMAS)))
