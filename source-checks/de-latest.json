@@ -1,0 +1,447 @@
+{
+  "country": "DE",
+  "sourceCheckedAt": "2026-11-04T13:45:36Z",
+  "generatedAt": "2026-11-04T13:45:57Z",
+  "feeds": [
+    "fv.zip",
+    "rv.zip"
+  ],
+  "trips": {
+    "trips": 111944,
+    "mergedTrips": 16645
+  },
+  "catalog": {
+    "stations": 7590,
+    "variants": 95218,
+    "patterns": 31153,
+    "patternCalls": 410397,
+    "calls": 1318319,
+    "serviceDays": 1270141
+  },
+  "sha256": "b391d8977841d1b0430dc804d3689365342b47c1d8c4bd096635577f47ab7780",
+  "stationCountries": {
+    "DE": 6476,
+    "AT": 195,
+    "CH": 143,
+    "CZ": 463,
+    "SK": 4,
+    "PL": 126,
+    "DK": 12,
+    "NL": 21,
+    "HR": 3,
+    "SI": 12,
+    "HU": 12,
+    "FR": 61,
+    "SE": 7,
+    "BE": 23,
+    "LU": 10,
+    "IT": 22
+  },
+  "excludedTrips": [
+    {
+      "feed": "fv.zip",
+      "tripID": "1001023",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1011048",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1204506",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1327010",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1395825",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1430735",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1585828",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1597051",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1545437",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1006803",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1174444",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1211464",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1313253",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1532183",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "311972",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "411830",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "900432",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "985343",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1116996",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1170792",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1311825",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "1342876",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "216410",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "542290",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "73147",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "fv.zip",
+      "tripID": "852299",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "422208",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1701316",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "70859",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1322775",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1704704",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "199084",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "258326",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "361325",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "603193",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "8688",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "911789",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1249751",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1383163",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1484655",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "193107",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "117699",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1249511",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "143535",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1476739",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "166478",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1702541",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "376863",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "609700",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "656311",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1014635",
+      "reason": "fewer than two passenger calls"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1737252",
+      "reason": "fewer than two passenger calls"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "284420",
+      "reason": "fewer than two passenger calls"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "822542",
+      "reason": "fewer than two passenger calls"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "330471",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "931417",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1278365",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1636812",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "166236",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1677039",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1047356",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1050648",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1161711",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1250170",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1308617",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "200844",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "997312",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "147747",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "11524",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1231905",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1233013",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1294832",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1828973",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "614142",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "686515",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "973205",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "206990",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "905401",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "1167778",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "493656",
+      "reason": "no boarding call"
+    },
+    {
+      "feed": "rv.zip",
+      "tripID": "610629",
+      "reason": "no boarding call"
+    }
+  ]
+}

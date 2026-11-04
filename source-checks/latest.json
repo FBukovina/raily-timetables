@@ -1,24 +1,25 @@
 {
-  "sourceCheckedAt": "2026-11-03T11:59:29.123553Z",
-  "generatedAt": "2026-11-03T13:41:04Z",
+  "schemaVersion": 2,
+  "sourceCheckedAt": "2026-11-04T11:24:37.920156Z",
+  "generatedAt": "2026-11-04T13:44:03Z",
   "years": [
     2026
   ],
-  "amendments": 194485,
+  "amendments": 195358,
   "messages": {
-    "path": 55575,
-    "cancel": 152162,
+    "path": 55728,
+    "cancel": 152882,
     "excludedCountertimeVariants": 285,
     "excludedForeignTimingVariants": 3,
     "excludedInvalidTimingVariants": 2
   },
   "catalog": {
-    "variants": 46717,
-    "serviceDays": 2849470,
-    "calls": 494588,
+    "variants": 46821,
+    "serviceDays": 2849610,
+    "calls": 495690,
     "stations": 2745
   },
-  "sha256": "bd8e7398e4bb9c5e2bdcc87f61bb3f20afa8c50d049e8cf1ea64ab7cdf0b96a5",
+  "sha256": "d31b8f4cb176a2c17dd486167c0278e6629c5d920e8c3cf9600f8fce8462bd2c",
   "sources": [
     {
       "year": 2026,
@@ -27,7 +28,7 @@
         "bytes": 25292951,
         "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
         "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
-        "checkedAt": "2026-11-03T11:59:29.123553Z"
+        "checkedAt": "2026-11-04T11:24:37.920156Z"
       },
       "months": [
         {
@@ -92,13 +93,13 @@
         },
         {
           "name": "2026-11",
-          "count": 1529,
-          "inventorySHA256": "c2d9c21647aaf7120b436072cdb6310c4e2626eb8b285bb4e97be00ce2218ae4"
+          "count": 2402,
+          "inventorySHA256": "caaccb698f88d8a6e3c4fb9c9f903022369e44bcacc534682efc5405448a0ca5"
         }
       ],
-      "expectedAmendments": 194485,
+      "expectedAmendments": 195358,
       "complete": true,
-      "sourceCheckedAt": "2026-11-03T11:59:57.864281Z"
+      "sourceCheckedAt": "2026-11-04T11:25:13.823383Z"
     }
   ],
   "excludedVariants": [
@@ -2458,7 +2459,6 @@
         "2026-10-26",
         "2026-10-27",
         "2026-11-02",
-        "2026-11-03",
         "2026-11-04",
         "2026-11-05",
         "2026-11-06",
