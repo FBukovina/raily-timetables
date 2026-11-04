@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Publish only generated catalog artifacts, with an explicit branch lease."""
 import os, pathlib, shutil, subprocess, tempfile
-from publish import VERSIONS, verify
+from publish import catalog_paths, verify
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 BRANCH='refs/heads/catalog'
@@ -12,7 +12,11 @@ def git(*args,cwd=ROOT,env=None):
 
 def publish(folder):
     # The branch is replaced wholesale, so a missing schema would unpublish it.
-    for version in VERSIONS: verify(folder/f'catalog/v{version}')
+    for path in catalog_paths():
+        # Country catalogs publish once their first build succeeds; afterwards
+        # the preceding publication is always restored into the folder.
+        if '/' in path and not (folder/'catalog'/path/'manifest.json').exists(): continue
+        verify(folder/'catalog'/path)
     remote=git('remote','get-url','origin')
     if not remote.rstrip('/').removesuffix('.git').endswith('FBukovina/raily-timetables'):
         raise ValueError('Refusing unexpected publication repository')

@@ -48,11 +48,34 @@ On the 2026-10-05 sources, schema 2 is 70.2 MB (4.75 MB xz) where schema 1 is 33
 
 Published at `catalog/v1` until no shipped app reads it, then removed from `SCHEMAS` and `publish.VERSIONS`. It differs from v2 in three ways: `user_version=1`; a `service_days(variant_id,day)` row per operating date, with a `(day,variant_id)` index, instead of `variant_days`; and facility notes that also carry `startStationName`/`endStationName`. Its manifest has no `compression` field and its catalog is gzip (`catalog-<sha256>.sqlite.gz`).
 
+## Germany (`catalog/de/v2`)
+
+`scripts/download_gtfs.py` fetches gtfs.de's free [long-distance](https://gtfs.de/en/feeds/de_fv/) and [regional](https://gtfs.de/en/feeds/de_rv/) railway GTFS feeds, generated from DELFI e.V.'s nationwide data under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), with conditional requests, and records their ETag, Last-Modified, size and SHA-256 in `.cache/gtfs/de/inventory.json`. The free feeds are published weekly and cover 30 days from publication; a feed older than 14 days stops the build. `scripts/gtfs_catalog.py` converts them:
+
+```sh
+python3 scripts/download_gtfs.py --country de
+python3 scripts/gtfs_catalog.py --inventory .cache/gtfs/de/inventory.json
+python3 scripts/publish.py verify --catalog de/v2
+```
+
+* Only railway routes (`route_type` 2 and 100–117) are read. Platforms join their parent station. Calls with neither boarding nor alighting are not passenger calls. The first call has no arrival or alighting, the last no departure or boarding, as in CIS.
+* Trips with fewer than two passenger calls, no boarding call or times that run backwards are quarantined in `source-check.json` with their trip ID and reason, never repaired.
+* GTFS times stay civil: `HH:MM:SS` past the service day's midnight, split into seconds and a day offset. The app resolves Europe/Berlin (identical to Europe/Prague) and refuses clock-change hours, as for CIS.
+* A variant's ID is a hash of its operator, line, start and ordered (source station name, offsets, restrictions), so renumbered trip IDs in next week's export keep the same run ID. Trips with identical content merge their operating days.
+* Calls are stored once per stop pattern (`pattern_calls`, offsets from the variant's `start_seconds`) and `calls` is a view, so the app's schema 2 SQL is unchanged. On the 2026-10-31 feeds: 111,944 railway trips → 95,218 variants, 31,153 patterns and 410,397 pattern calls (1,318,319 calls through the view), 7,590 stations; 34.5 MB SQLite, 5.4 MB xz.
+* Stations get a country from `scripts/europe-borders.json` (Natural Earth 1:10m Admin 0, public domain, simplified to about 20 m by `scripts/borders.py`), because GTFS stops have none. The app lists a catalog's stations in its own country; foreign stations appear only within journeys, or where no catalog covers that country.
+* Display names use the short railway form (`S+U Berlin Hauptbahnhof` → `Berlin Hbf`, `Dülmen, Bahnhof` → `Dülmen`); `normalized_name` holds space-separated folded aliases including the source name and `Hauptbahnhof` for `Hbf`, and folds `ß` to `ss` as the app does.
+* The free feeds contain no train numbers (`trip_short_name`) or headsigns. Runs are titled by their line (`ICE`, `RE 1`, `S5`) and `train_number` is empty. DELFI's own GTFS on [opendata-oepnv.de](https://www.opendata-oepnv.de/) includes more fields but requires a registered account to download.
+
+The German steps continue on error: an outage keeps the preceding German publication and never blocks Czech publication. `mirror.py` verifies every published folder; a country folder is skipped only before its first publication.
+
 ## Sources and reuse
 
 * [Ministry of Transport source and reuse terms](https://md.gov.cz/Dokumenty/Verejna-doprava/Jizdni-rady,-kalendare-pro-jizdni-rady,-metodi-(1)/Jizdni-rady-verejne-dopravy): CIS JŘ data is available for further processing, including commercial use.
 * [Official CIS railway XML directory](https://portal.cisjr.cz/pub/draha/celostatni/szdc/).
 * [Message specification v1.09.06](https://portal.cisjr.cz/pub/draha/celostatni/szdc/Popis%20DJ%C5%98_CIS_v1_09_06.pdf), particularly §§3.1.1, 3.1.4, 3.2, 5.1, 5.3, 5.5 and 5.8.
+* German railway timetables: DELFI e.V. via [gtfs.de](https://gtfs.de/), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Attribution required: "DELFI e.V., gtfs.de".
+* Country borders: [Natural Earth](https://www.naturalearthdata.com/) 1:10m Admin 0 Countries, public domain.
 * [Official KADR codebook service](https://provoz.spravazeleznic.cz/kadrws/ciselniky.asmx). `scripts/codebooks.json` is a minimized capture of company codes/names and commercial train categories, captured 2026-10-05. Personal contact fields are not retained.
 
 Tests use hand-authored fictional XML based on the published schema; no test fixture is included in a production catalog. Upstream timetable data remains subject to the source's reuse terms. This repository does not relicense upstream data.
