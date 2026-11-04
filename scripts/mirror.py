@@ -14,8 +14,10 @@ def publish(folder):
     # The branch is replaced wholesale, so a missing schema would unpublish it.
     for path in catalog_paths():
         # Country catalogs publish once their first build succeeds; afterwards
-        # the preceding publication is always restored into the folder.
-        if '/' in path and not (folder/'catalog'/path/'manifest.json').exists(): continue
+        # the preceding publication is always restored into the folder. A
+        # failed first build may leave unverified files, which never ship.
+        if '/' in path and not (folder/'catalog'/path/'manifest.json').exists():
+            shutil.rmtree(folder/'catalog'/path,ignore_errors=True); continue
         verify(folder/'catalog'/path)
     remote=git('remote','get-url','origin')
     if not remote.rstrip('/').removesuffix('.git').endswith('FBukovina/raily-timetables'):
