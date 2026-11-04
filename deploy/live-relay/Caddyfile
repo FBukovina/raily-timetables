@@ -1,0 +1,9 @@
+# HTTPS in front of the relay. Replace the host name; Caddy obtains the certificate.
+live.example.org {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+	# No access log: requests name the runs a user looks at.
+	log {
+		output discard
+	}
+}
