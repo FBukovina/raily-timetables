@@ -1,0 +1,20 @@
+# systemd unit for a host without Docker: copy the repository to /srv/raily.
+[Unit]
+Description=Raily Live realtime relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=raily
+WorkingDirectory=/srv/raily
+ExecStart=/usr/bin/python3 -u scripts/live_relay.py --host 127.0.0.1 --port 8080 --cache /srv/raily/cache
+Restart=always
+RestartSec=10
+MemoryMax=3G
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/srv/raily/cache
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

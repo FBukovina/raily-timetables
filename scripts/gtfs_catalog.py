@@ -139,8 +139,12 @@ def feed_window(feed):
     if not starts: raise ValueError(f'{feed.path.name}: no service calendar')
     return min(starts), max(ends)
 
-def read_feeds(paths, home, borders):
-    """Return stations, variants {id: record} and quarantined trips across all feeds."""
+def read_feeds(paths, home, borders, trip_runs=None):
+    """Return stations, variants {id: record} and quarantined trips across all feeds.
+
+    `trip_runs`, when given, receives each kept GTFS trip ID mapped to its variant ID
+    and the GTFS stop_sequence of every passenger call, in call order. The live
+    relay uses it to place realtime updates on catalog calls."""
     stations, variants, exclusions, counts = {}, {}, [], collections.Counter()
     for path in paths:
         feed = Feed(path)
@@ -172,7 +176,7 @@ def read_feeds(paths, home, borders):
                 boarding, alighting = row.get('pickup_type', '') != '1', row.get('drop_off_type', '') != '1'
                 if not boarding and not alighting: continue
                 arrival, departure = seconds(row['arrival_time']), seconds(row['departure_time'])
-                calls.append([station_for(row['stop_id']), arrival, departure, boarding, alighting])
+                calls.append([station_for(row['stop_id']), arrival, departure, boarding, alighting, int(row['stop_sequence'])])
             reason = None
             if len(calls) < 2: reason = 'fewer than two passenger calls'
             else:
@@ -210,6 +214,7 @@ def read_feeds(paths, home, borders):
                                         'pattern': pattern, 'start': start, 'days': set(service_days)}
             elif record['pattern'] != pattern: raise ValueError(f'Variant identity collision {variant_id}')
             else: record['days'] |= service_days; counts['mergedTrips'] += 1
+            if trip_runs is not None: trip_runs[trip_id] = (variant_id, tuple(c[5] for c in calls))
     return stations, variants, exclusions, counts
 
 def write_catalog(stations, variants, output, metadata):
