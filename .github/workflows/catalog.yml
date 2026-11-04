@@ -60,6 +60,17 @@ jobs:
       - name: Build complete catalog
         if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap != true
         run: python -u scripts/catalog.py
+      # Germany is independent: a gtfs.de outage keeps the preceding German
+      # catalog (restored above) and never holds back the Czech publication.
+      - name: Download German railway feeds
+        id: germany_download
+        if: steps.clock.outputs.enabled == 'true'
+        continue-on-error: true
+        run: python -u scripts/download_gtfs.py --country de
+      - name: Build German catalog
+        if: steps.clock.outputs.enabled == 'true' && steps.germany_download.outcome == 'success'
+        continue-on-error: true
+        run: python -u scripts/gtfs_catalog.py --inventory .cache/gtfs/de/inventory.json
       - name: Use validated bootstrap
         if: steps.clock.outputs.enabled == 'true' && inputs.bootstrap == true
         run: python scripts/publish.py bootstrap
@@ -82,9 +93,11 @@ jobs:
         if: steps.clock.outputs.enabled == 'true'
         run: |
           cp site/catalog/v2/source-check.json source-checks/latest.json
+          if [ -f site/catalog/de/v2/source-check.json ]; then cp site/catalog/de/v2/source-check.json source-checks/de-latest.json; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add source-checks/latest.json
+          if [ -f source-checks/de-latest.json ]; then git add source-checks/de-latest.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'Record successful timetable source check'
             git pull --rebase origin main
