@@ -1,0 +1,47 @@
+name: Raily Live health
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: relay-health
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RELAY_URL: https://150-230-152-127.sslip.io
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/relay_health.py
+          sparse-checkout-cone-mode: false
+      # An outage opens one issue and fails the run, so GitHub notifies the
+      # owner; recovery closes the issue.
+      - name: Check the relay and track outages
+        run: |
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --label relay-down --state open --json number --jq '.[0].number // empty')
+          if PROBLEM=$(python3 scripts/relay_health.py "$RELAY_URL"); then
+            echo "Relay healthy"
+            if [ -n "$open" ]; then
+              gh issue close "$open" --repo "$GITHUB_REPOSITORY" --comment "Recovered at $(date -u +%FT%TZ)."
+            fi
+            exit 0
+          fi
+          echo "Relay unhealthy: $PROBLEM"
+          if [ -z "$open" ]; then
+            gh label create relay-down --repo "$GITHUB_REPOSITORY" --color B60205 --description 'Raily Live health check failing' 2>/dev/null || true
+            BODY="The scheduled check of $RELAY_URL/v1/health failed three times in a row at $(date -u +%FT%TZ):
+
+          $PROBLEM
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          Recovery steps are in deploy/live-relay/README.md. This issue closes itself when the relay recovers."
+            gh issue create --repo "$GITHUB_REPOSITORY" --label relay-down --title "Raily Live relay is down" --body "$BODY"
+          fi
+          exit 1
