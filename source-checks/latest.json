@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
-  "sourceCheckedAt": "2026-11-04T11:24:37.920156Z",
-  "generatedAt": "2026-11-04T13:44:03Z",
+  "sourceCheckedAt": "2026-11-05T12:27:01.894107Z",
+  "generatedAt": "2026-11-05T14:50:36Z",
   "years": [
     2026
   ],
-  "amendments": 195358,
+  "amendments": 196570,
   "messages": {
-    "path": 55728,
-    "cancel": 152882,
-    "excludedCountertimeVariants": 285,
+    "path": 56023,
+    "cancel": 153799,
+    "excludedCountertimeVariants": 287,
     "excludedForeignTimingVariants": 3,
     "excludedInvalidTimingVariants": 2
   },
   "catalog": {
-    "variants": 46821,
-    "serviceDays": 2849610,
-    "calls": 495690,
-    "stations": 2745
+    "variants": 47102,
+    "serviceDays": 2849814,
+    "calls": 498625,
+    "stations": 2746
   },
-  "sha256": "d31b8f4cb176a2c17dd486167c0278e6629c5d920e8c3cf9600f8fce8462bd2c",
+  "sha256": "97b4ac3a08b2f0deed2de795af9a33449effd6bf9f829c9aea074aa63f7e2c7e",
   "sources": [
     {
       "year": 2026,
@@ -28,7 +28,7 @@
         "bytes": 25292951,
         "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
         "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
-        "checkedAt": "2026-11-04T11:24:37.920156Z"
+        "checkedAt": "2026-11-05T12:27:01.894107Z"
       },
       "months": [
         {
@@ -93,13 +93,13 @@
         },
         {
           "name": "2026-11",
-          "count": 2402,
-          "inventorySHA256": "caaccb698f88d8a6e3c4fb9c9f903022369e44bcacc534682efc5405448a0ca5"
+          "count": 3614,
+          "inventorySHA256": "4f91def952c18c638c21b4ae404be863a6eed388f8229fc08d01116e5dae4981"
         }
       ],
-      "expectedAmendments": 195358,
+      "expectedAmendments": 196570,
       "complete": true,
-      "sourceCheckedAt": "2026-11-04T11:25:13.823383Z"
+      "sourceCheckedAt": "2026-11-05T12:27:35.838338Z"
     }
   ],
   "excludedVariants": [
@@ -2273,12 +2273,7 @@
         "2026-11-03",
         "2026-11-04",
         "2026-11-05",
-        "2026-11-06",
-        "2026-11-09",
-        "2026-11-10",
-        "2026-11-11",
-        "2026-11-12",
-        "2026-11-13"
+        "2026-11-06"
       ],
       "reason": "declaredOperationalCountertime"
     },
@@ -2334,12 +2329,7 @@
         "2026-11-03",
         "2026-11-04",
         "2026-11-05",
-        "2026-11-06",
-        "2026-11-09",
-        "2026-11-10",
-        "2026-11-11",
-        "2026-11-12",
-        "2026-11-13"
+        "2026-11-06"
       ],
       "reason": "declaredOperationalCountertime"
     },
@@ -3973,9 +3963,31 @@
       "reason": "declaredOperationalCountertime"
     },
     {
+      "pathID": "PA:0054:--KADR386117:01:2026",
+      "days": [
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
       "pathID": "PA:0054:--KADR387924:01:2026",
       "days": [
         "2026-11-07"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR388482:01:2026",
+      "days": [
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
       ],
       "reason": "declaredOperationalCountertime"
     }
