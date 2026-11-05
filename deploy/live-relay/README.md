@@ -30,6 +30,10 @@ docker run -d --restart=always -p 127.0.0.1:8080:8080 -v raily-live-cache:/srv/r
 
 or install `raily-live.service` and put `Caddyfile` in front. `GET /v1/health` returns 503 until the first fetch succeeds and whenever the last successful fetch is over five minutes old; point an uptime monitor at it.
 
+## Monitoring
+
+`.github/workflows/relay-health.yml` checks `/v1/health` from GitHub every 10 minutes with `scripts/relay_health.py`: HTTPS must work, `ok` must be true and the last feed fetch must be under 10 minutes old, with three attempts 20 seconds apart. An outage opens one `relay-down` issue and fails the run, so GitHub notifies the owner; recovery closes the issue. If it fires: `ssh ubuntu@<ip> 'systemctl status raily-live caddy; journalctl -u raily-live -n 50'`, and re-run `deploy.sh` to reinstall.
+
 ## Privacy
 
 Requests carry the run IDs a person is looking at. The relay keeps no request log and the Caddy example discards access logs. It stores only the public feeds it downloads.
