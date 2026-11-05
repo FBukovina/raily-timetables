@@ -3,6 +3,12 @@
 # Always Free Ampere A1 VM. Re-running it updates the code and restarts.
 #
 #   deploy/live-relay/deploy.sh ubuntu@<public-ip> [host-name]
+#   RAILY_GOLEMIO_KEY_FILE=<file> deploy/live-relay/deploy.sh ...
+#
+# Prague realtime (/v1/pid) asks Golemio with Raily's key, kept on the host in
+# /etc/raily/golemio-key. Pass the file holding it to install or replace it;
+# without one the installed key stays, and with none the app asks Golemio
+# itself.
 #
 # Without a host name it serves https://<ip-with-dashes>.sslip.io: sslip.io
 # resolves that name to the IP, so Caddy can obtain a Let's Encrypt
@@ -18,6 +24,9 @@ SSH="ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20"
 
 rsync -az --delete --exclude __pycache__ -e "$SSH" "$ROOT/scripts/" "$TARGET:/tmp/raily-scripts/"
 rsync -az -e "$SSH" "$ROOT/deploy/live-relay/raily-live.service" "$TARGET:/tmp/raily-live.service"
+if [[ -n ${RAILY_GOLEMIO_KEY_FILE:-} ]]; then
+  $SSH "$TARGET" 'umask 077; cat > /tmp/raily-golemio-key' < "$RAILY_GOLEMIO_KEY_FILE"
+fi
 $SSH "$TARGET" sudo bash -s "$HOST" <<'REMOTE'
 set -euo pipefail
 HOST=$1
@@ -27,6 +36,11 @@ cloud-init status --wait >/dev/null 2>&1 || true
 apt-get -o DPkg::Lock::Timeout=600 update -q
 apt-get -o DPkg::Lock::Timeout=600 install -y -q python3 tzdata caddy rsync
 id raily >/dev/null 2>&1 || useradd --system --home /srv/raily --shell /usr/sbin/nologin raily
+if [[ -f /tmp/raily-golemio-key ]]; then
+  install -d -m 750 -o root -g raily /etc/raily
+  install -m 640 -o root -g raily /tmp/raily-golemio-key /etc/raily/golemio-key
+  rm -f /tmp/raily-golemio-key
+fi
 mkdir -p /srv/raily/cache
 rsync -a --delete /tmp/raily-scripts/ /srv/raily/scripts/
 chown -R raily /srv/raily/cache
