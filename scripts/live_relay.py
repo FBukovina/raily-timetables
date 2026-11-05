@@ -17,6 +17,8 @@ last report is kept until it is 20 minutes old.
     python3 scripts/live_relay.py --port 8080
 
 GET /v1/runs?ids=<run>,<run>  up to 100 runs; unknown runs are left out
+GET /v1/pid/...               Prague realtime, shared by every phone (pid_relay.py);
+                              needs --golemio-key-file
 GET /v1/health                feed and schedule state, for monitoring
 """
 from __future__ import annotations
@@ -25,6 +27,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from gtfs_catalog import Borders, read_feeds
 from gtfs_realtime import CANCELED, NO_DATA, SKIPPED, decode
+from pid_relay import PID, SOURCE, Answer
 
 FEED_URL = 'https://realtime.gtfs.de/realtime-free.pb'
 ATTRIBUTION = {'name': 'DELFI e.V., gtfs.de', 'license': 'CC-BY-SA-4.0', 'url': 'https://gtfs.de/en/realtime/'}
@@ -121,8 +124,8 @@ def runs_from_feed(schedule, data, received_at):
 
 
 class Relay:
-    def __init__(self, cache, interval, feed_url=FEED_URL):
-        self.cache, self.interval, self.feed_url = cache, interval, feed_url
+    def __init__(self, cache, interval, feed_url=FEED_URL, pid=None):
+        self.cache, self.interval, self.feed_url, self.pid = cache, interval, feed_url, pid
         self.lock = threading.Lock()
         self.schedule = None
         self.runs, self.feed_timestamp, self.fetched_at, self.etag = {}, None, None, None
@@ -181,7 +184,8 @@ class Relay:
             fresh = self.fetched_at is not None and time.time() - self.fetched_at < 5 * 60
             return {'ok': fresh and self.schedule is not None, 'feedTimestamp': self.feed_timestamp,
                     'fetchedAt': int(self.fetched_at) if self.fetched_at else None, 'runs': len(self.runs),
-                    'trips': len(self.schedule.trips) if self.schedule else 0, 'lastError': self.last_error}
+                    'trips': len(self.schedule.trips) if self.schedule else 0, 'lastError': self.last_error,
+                    'pid': self.pid.health() if self.pid else None}
 
 
 def handler(relay):
@@ -192,6 +196,9 @@ def handler(relay):
             url = urllib.parse.urlsplit(self.path)
             if url.path == '/v1/health':
                 body = relay.health(); return self.reply(200 if body['ok'] else 503, body, cache=0)
+            if url.path.startswith('/v1/pid/'):
+                answer = relay.pid.answer(url.path, url.query) if relay.pid else Answer.json(503, {'error': 'no Golemio key on this relay'})
+                return self.send(answer, cache=0) if answer else self.reply(404, {'error': 'not found'}, cache=300)
             if url.path != '/v1/runs': return self.reply(404, {'error': 'not found'}, cache=300)
             raw = urllib.parse.parse_qs(url.query).get('ids', [''])[0]
             ids = list(dict.fromkeys(i for i in raw.split(',') if i))
@@ -200,12 +207,15 @@ def handler(relay):
             self.reply(200, relay.lookup(ids), cache=15)
 
         def reply(self, status, body, cache):
-            data = json.dumps(body, separators=(',', ':')).encode()
-            gzipped = 'gzip' in self.headers.get('Accept-Encoding', '') and len(data) > 1024
-            if gzipped: data = gzip.compress(data, mtime=0)
-            self.send_response(status)
+            self.send(Answer.json(status, body), cache)
+
+        def send(self, answer, cache):
+            gzipped = answer.gzipped is not None and 'gzip' in self.headers.get('Accept-Encoding', '')
+            data = answer.gzipped if gzipped else answer.body
+            self.send_response(answer.status)
             self.send_header('Content-Type', 'application/json')
             self.send_header('Cache-Control', f'public, max-age={cache}' if cache else 'no-store')
+            if answer.proxied: self.send_header(*SOURCE)
             if gzipped: self.send_header('Content-Encoding', 'gzip')
             self.send_header('Content-Length', str(len(data)))
             self.end_headers()
@@ -222,9 +232,10 @@ if __name__ == '__main__':
     p.add_argument('--cache', type=pathlib.Path, default=pathlib.Path('.cache/gtfs/de'))
     p.add_argument('--host', default='127.0.0.1'); p.add_argument('--port', type=int, default=8080)
     p.add_argument('--interval', type=int, default=60, help='Seconds between feed fetches')
+    p.add_argument('--golemio-key-file', type=pathlib.Path, help='Raily\'s Golemio key, for /v1/pid')
     a = p.parse_args()
-    relay = Relay(a.cache, a.interval)
+    relay = Relay(a.cache, a.interval, pid=PID.from_file(a.golemio_key_file))
     threading.Thread(target=relay.loop, daemon=True).start()
     server = http.server.ThreadingHTTPServer((a.host, a.port), handler(relay))
-    print(f'Raily Live on http://{a.host}:{a.port}', flush=True)
+    print(f'Raily Live on http://{a.host}:{a.port}; Prague realtime {"on" if relay.pid else "off (no Golemio key)"}', flush=True)
     server.serve_forever()

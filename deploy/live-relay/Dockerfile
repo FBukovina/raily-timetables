@@ -7,4 +7,5 @@ COPY scripts/ scripts/
 USER raily
 EXPOSE 8080
 HEALTHCHECK --interval=60s --timeout=5s --start-period=180s CMD python3 -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/v1/health', timeout=4)"
-CMD ["python3", "-u", "scripts/live_relay.py", "--host", "0.0.0.0", "--port", "8080", "--cache", "/srv/raily/cache"]
+# Prague realtime needs Raily's Golemio key as the secret golemio-key; without it /v1/pid answers 503.
+CMD ["python3", "-u", "scripts/live_relay.py", "--host", "0.0.0.0", "--port", "8080", "--cache", "/srv/raily/cache", "--golemio-key-file", "/run/secrets/golemio-key"]

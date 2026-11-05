@@ -7,7 +7,7 @@ Wants=network-online.target
 [Service]
 User=raily
 WorkingDirectory=/srv/raily
-ExecStart=/usr/bin/python3 -u scripts/live_relay.py --host 127.0.0.1 --port 8080 --cache /srv/raily/cache
+ExecStart=/usr/bin/python3 -u scripts/live_relay.py --host 127.0.0.1 --port 8080 --cache /srv/raily/cache --golemio-key-file /etc/raily/golemio-key
 Restart=always
 RestartSec=10
 MemoryMax=3G
