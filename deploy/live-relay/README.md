@@ -1,17 +1,20 @@
 # Raily Live relay
 
-`scripts/live_relay.py` joins Germany's free GTFS Realtime stream to catalog runs and answers `GET /v1/runs?ids=…` for the app. See the module docstring for the API and semantics.
+`scripts/live_relay.py` joins Germany's free GTFS Realtime stream to catalog runs and answers `GET /v1/runs?ids=…` for the app. It also answers the app's Prague (PID) requests under `/v1/pid/` from `scripts/pid_relay.py`: it asks Golemio once with Raily's key, shares each answer between phones for 10 to 20 seconds (timetables for six hours), and sends only trains from the position list, about 11 kB gzip instead of 230 kB. See the module docstrings for the API and semantics.
+
+The app asks the relay first without the key, and asks Golemio itself with the key built into the app when the relay is unreachable, failing, or answers without `X-Raily-Source: golemio`. The relay omits that header when it has no key or Golemio refuses it, so a relay without a key costs a phone one quick request every two minutes.
 
 ## Requirements
 
 - An always-on Linux host with 2–3 GB of RAM: loading the static railway feeds peaks at about 2 GB for some seconds every six hours, and the stream decodes in about 7 s per fetch.
-- About 18 GB of inbound traffic a day: the stream is 12.8 MB gzip, fetched once a minute. Outbound traffic is small JSON.
+- About 18 GB of inbound traffic a day: the stream is 12.8 MB gzip, fetched once a minute. Prague adds at most a 230 kB position list every 15 seconds while someone looks at it, plus the boards and trips people open. Outbound traffic is small JSON.
+- Raily's Golemio key for Prague, in a file: `RAILY_GOLEMIO_KEY_FILE=<file> deploy/live-relay/deploy.sh …` installs it as `/etc/raily/golemio-key`, readable only by root and the relay. It is the key in the app's ignored `Config/Secrets.xcconfig` (`GOLEMIO_API_KEY`); never commit it.
 - HTTPS on a host name the app can reach. The app accepts plain HTTP only for `127.0.0.1` and `localhost`.
 
 ## Oracle Cloud Always Free
 
 1. Create an Always Free account at cloud.oracle.com. Pick a home region near the users and the feed, such as Germany Central (Frankfurt); it can't be changed later.
-2. Create an instance: image Canonical Ubuntu 24.04, shape VM.Standard.A1.Flex (Ampere) with 2 OCPUs and 12 GB, a public subnet with a public IPv4 address, and your SSH public key. The 1 GB AMD micro shape is too small for the 1.6 GB peak. "Out of host capacity" for A1 is common; retry later or choose another availability domain.
+2. Create an instance: image Canonical Ubuntu 24.04, shape VM.Standard.A1.Flex (Ampere) with 1 OCPU and 6 GB (memory use then stays above the 20% Oracle treats as idle), a public subnet with a public IPv4 address, and your SSH public key. The 1 GB AMD micro shape is too small for the 1.6 GB peak. "Out of host capacity" for A1 is common; retry later or choose another availability domain.
 3. In the instance's subnet, add ingress rules to the default security list for TCP 80 and 443 from 0.0.0.0/0.
 4. Deploy, then set the app's `RAILY_LIVE_URL` for Release to the printed address:
 
@@ -32,8 +35,8 @@ or install `raily-live.service` and put `Caddyfile` in front. `GET /v1/health` r
 
 ## Privacy
 
-Requests carry the run IDs a person is looking at. The relay keeps no request log and the Caddy example discards access logs. It stores only the public feeds it downloads.
+Requests carry the run IDs, trips and stations a person is looking at. The relay keeps no request log and the Caddy example discards access logs. It stores only the public feeds it downloads and, in memory for at most six hours, the Golemio answers it shares. Phones never send the Golemio key to the relay.
 
 ## Licences
 
-The stream is CC BY-SA 4.0 (DELFI e.V., gtfs.de); every response names it in `source`, and the app shows the attribution on journeys that use it.
+The stream is CC BY-SA 4.0 (DELFI e.V., gtfs.de); every response names it in `source`, and the app shows the attribution on journeys that use it. Prague answers are Golemio's PID open data, passed on unchanged apart from leaving out vehicles that aren't trains.
