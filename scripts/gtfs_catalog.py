@@ -139,13 +139,19 @@ def feed_window(feed):
     if not starts: raise ValueError(f'{feed.path.name}: no service calendar')
     return min(starts), max(ends)
 
+def variant_id(operator, title, start, pattern, stations, qualified):
+    calls = [(stations[p[0]]['source'],) + ((p[0],) if qualified else ()) + p[1:] for p in pattern]
+    identity = json.dumps([operator, title, start, calls], ensure_ascii=False, separators=(',', ':'))
+    return hashlib.sha256(identity.encode()).hexdigest()[:16]
+
 def read_feeds(paths, home, borders, trip_runs=None):
     """Return stations, variants {id: record} and quarantined trips across all feeds.
 
     `trip_runs`, when given, receives each kept GTFS trip ID mapped to its variant ID
     and the GTFS stop_sequence of every passenger call, in call order. The live
     relay uses it to place realtime updates on catalog calls."""
-    stations, variants, exclusions, counts = {}, {}, [], collections.Counter()
+    stations, staged, exclusions, counts = {}, {}, [], collections.Counter()
+    pending = []
     for path in paths:
         feed = Feed(path)
         stops = {row['stop_id']: row for row in feed.rows('stops.txt')}
@@ -205,16 +211,25 @@ def read_feeds(paths, home, borders, trip_runs=None):
             destination = display_name(calls[-1][0]['stop_name'])
             # Content identity: the same train in next week's export keeps its ID
             # even if the producer renumbers trip IDs.
-            identity = json.dumps([operator, title, start, [(stations[p[0]]['source'],) + p[1:] for p in pattern]],
-                                  ensure_ascii=False, separators=(',', ':'))
-            variant_id = hashlib.sha256(identity.encode()).hexdigest()[:16]
-            record = variants.get(variant_id)
+            key = (variant_id(operator, title, start, pattern, stations, qualified=False), pattern)
+            record = staged.get(key)
             if record is None:
-                variants[variant_id] = {'id': variant_id, 'title': title, 'operator': operator, 'destination': destination,
-                                        'pattern': pattern, 'start': start, 'days': set(service_days)}
-            elif record['pattern'] != pattern: raise ValueError(f'Variant identity collision {variant_id}')
+                staged[key] = {'title': title, 'operator': operator, 'destination': destination,
+                               'pattern': pattern, 'start': start, 'days': set(service_days)}
             else: record['days'] |= service_days; counts['mergedTrips'] += 1
-            if trip_runs is not None: trip_runs[trip_id] = (variant_id, tuple(c[5] for c in calls))
+            if trip_runs is not None: pending.append((trip_id, key, tuple(c[5] for c in calls)))
+    names = collections.Counter(name for name, _ in staged)
+    variants, final = {}, {}
+    for key, record in staged.items():
+        qualified = names[key[0]] > 1
+        counts['sameNameStationVariants'] += qualified
+        record['id'] = final[key] = variant_id(record['operator'], record['title'], record['start'],
+                                               record['pattern'], stations, qualified)
+        previous = variants.get(record['id'])
+        if previous is None: variants[record['id']] = record
+        elif previous['pattern'] != record['pattern']: raise ValueError(f'Variant identity collision {record["id"]}')
+        else: previous['days'] |= record['days']
+    for trip_id, key, sequences in pending: trip_runs[trip_id] = (final[key], sequences)
     return stations, variants, exclusions, counts
 
 def write_catalog(stations, variants, output, metadata):
