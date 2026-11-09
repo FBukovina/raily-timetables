@@ -3,14 +3,11 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / 'scripts'))
 import gtfs_catalog
 from gtfs_catalog import Borders, display_name, normalized, read_feeds, write_catalog
 
-def feed(path, stop_times, calendar_dates='', trips=None):
+def feed(path, stop_times, calendar_dates='', trips=None, stops=None):
     files = {
         'agency.txt': 'agency_id,agency_name,agency_url,agency_timezone\n1,DB Regio,https://bahn.de,Europe/Berlin\n',
         'routes.txt': 'route_id,agency_id,route_short_name,route_type\nr1,1,RE 1,2\nbus,1,100,3\n',
-        'stops.txt': 'stop_id,stop_name,stop_lat,stop_lon,location_type,parent_station\n'
-                     'B,"S+U Berlin Hauptbahnhof",52.525,13.369,1,\nB1,Berlin Hbf Gleis 1,52.525,13.369,,B\n'
-                     'S,"Berlin, Spandau",52.534,13.197,,\nH,"Hamburg, Hamburg Hbf",53.553,10.007,,\n'
-                     'P,Praha hl.n.,50.083,14.436,,\nG,Gießen Bahnhof,50.579,8.663,,\n',
+        'stops.txt': stops or STOPS,
         'trips.txt': trips or 'route_id,service_id,trip_id\nr1,wd,t1\nr1,wd,t2\nr1,we,t3\nr1,wd,t4\nbus,wd,b1\n',
         'calendar.txt': 'service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date\n'
                         'wd,1,1,1,1,1,0,0,20261102,20261108\nwe,0,0,0,0,0,1,1,20261102,20261108\n',
@@ -20,6 +17,11 @@ def feed(path, stop_times, calendar_dates='', trips=None):
     with zipfile.ZipFile(path, 'w') as archive:
         for name, text in files.items(): archive.writestr(name, text)
     return path
+
+STOPS = ('stop_id,stop_name,stop_lat,stop_lon,location_type,parent_station\n'
+         'B,"S+U Berlin Hauptbahnhof",52.525,13.369,1,\nB1,Berlin Hbf Gleis 1,52.525,13.369,,B\n'
+         'S,"Berlin, Spandau",52.534,13.197,,\nH,"Hamburg, Hamburg Hbf",53.553,10.007,,\n'
+         'P,Praha hl.n.,50.083,14.436,,\nG,Gießen Bahnhof,50.579,8.663,,\n')
 
 TIMES = ('t1,08:00:00,08:00:00,B1,1,,\nt1,08:15:00,08:16:00,S,2,,\nt1,09:45:00,09:45:00,H,3,,\n'
          't2,09:00:00,09:00:00,B1,1,,\nt2,09:15:00,09:16:00,S,2,,\nt2,10:45:00,10:45:00,H,3,,\n'
@@ -81,6 +83,33 @@ class GTFSCatalogTests(unittest.TestCase):
         trips = 'route_id,service_id,trip_id\nr1,wd,x9\nr1,wd,x8\nr1,we,t3\nr1,wd,t4\n'
         stations, second, *_ = read_feeds([feed(self.root / 'next.zip', renumbered, trips=trips)], 'DE', Borders())
         self.assertEqual(set(first), set(second))
+
+    def test_same_name_stations_keep_their_trains_apart(self):
+        stops = STOPS + 'K1,Schweinfurt Hbf,50.036438,10.211294,1,\nK2,Schweinfurt Hbf,50.035824,10.21167,1,\n'
+        trips = 'route_id,service_id,trip_id\nr1,wd,t1\nr1,wd,t2\nr1,we,t3\nr1,wd,t4\nbus,wd,b1\nr1,wd,tA\nr1,we,tB\n'
+        dates = 'wd,2,20261104\nwd,1,20261107\n'
+        ta_rows = 'tA,07:00:00,07:00:00,S,1,,\ntA,07:30:00,07:30:00,K1,2,,\n'
+        tb_rows = 'tB,07:00:00,07:00:00,S,1,,\ntB,07:30:00,07:30:00,K2,2,,\n'
+        runs = {}
+        stations, variants, exclusions, counts = read_feeds(
+            [feed(self.root / 'pair.zip', TIMES + ta_rows + tb_rows, dates, trips, stops)], 'DE', Borders(), trip_runs=runs)
+        self.assertEqual(exclusions, [])
+        ta = next(v for v in variants.values() if v['pattern'][-1][0] == 'K1')
+        tb = next(v for v in variants.values() if v['pattern'][-1][0] == 'K2')
+        self.assertNotEqual(ta['id'], tb['id'])
+        self.assertEqual({d.isoformat() for d in ta['days']}, {'2026-11-02', '2026-11-03', '2026-11-05', '2026-11-06', '2026-11-07'})
+        self.assertEqual({d.isoformat() for d in tb['days']}, {'2026-11-07', '2026-11-08'})
+        _, again, *_ = read_feeds(
+            [feed(self.root / 'reversed.zip', TIMES + tb_rows + ta_rows, dates, trips, stops)], 'DE', Borders())
+        self.assertEqual(set(variants), set(again))
+        _, baseline, *_ = self.build()
+        self.assertEqual(set(variants) - {ta['id'], tb['id']}, set(baseline))
+        self.assertEqual(runs['tA'][0], ta['id']); self.assertEqual(runs['tB'][0], tb['id'])
+        self.assertEqual(counts['sameNameStationVariants'], 2)
+        write_catalog(stations, variants, self.root / 'pair.sqlite', {'schemaVersion': 2})
+        db = sqlite3.connect(self.root / 'pair.sqlite')
+        self.assertEqual(db.execute('SELECT count(*) FROM variants').fetchone()[0], 5)
+        db.close()
 
     def test_backwards_times_are_quarantined_not_repaired(self):
         times = TIMES.replace('t2,10:45:00,10:45:00,H,3', 't2,09:10:00,09:10:00,H,3')
