@@ -1,0 +1,42 @@
+{
+  "country": "DE",
+  "sourceCheckedAt": "2026-11-14T13:59:03Z",
+  "generatedAt": "2026-11-14T13:59:22Z",
+  "feeds": [
+    "fv.zip",
+    "rv.zip"
+  ],
+  "trips": {
+    "trips": 103316,
+    "mergedTrips": 16077,
+    "sameNameStationVariants": 8
+  },
+  "catalog": {
+    "stations": 7484,
+    "variants": 87239,
+    "patterns": 28054,
+    "patternCalls": 373151,
+    "calls": 1213326,
+    "serviceDays": 1187385
+  },
+  "sha256": "3c09fbbbe7023a1327039130537947d450f44daca8a5a699cd1d846a64727ad0",
+  "stationCountries": {
+    "DE": 6436,
+    "AT": 187,
+    "CH": 143,
+    "HU": 10,
+    "SK": 4,
+    "CZ": 427,
+    "PL": 124,
+    "DK": 12,
+    "HR": 2,
+    "SI": 10,
+    "FR": 46,
+    "SE": 7,
+    "NL": 21,
+    "BE": 23,
+    "IT": 22,
+    "LU": 10
+  },
+  "excludedTrips": []
+}
