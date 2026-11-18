@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
-  "sourceCheckedAt": "2026-11-17T13:31:30.135720Z",
-  "generatedAt": "2026-11-17T15:00:38Z",
+  "sourceCheckedAt": "2026-11-18T13:08:50.272936Z",
+  "generatedAt": "2026-11-18T14:57:24Z",
   "years": [
     2026
   ],
-  "amendments": 205202,
+  "amendments": 206002,
   "messages": {
-    "path": 57426,
-    "cancel": 161028,
-    "excludedCountertimeVariants": 299,
+    "path": 57590,
+    "cancel": 161664,
+    "excludedCountertimeVariants": 303,
     "excludedForeignTimingVariants": 3,
     "excludedInvalidTimingVariants": 2
   },
   "catalog": {
-    "variants": 48214,
-    "serviceDays": 2849896,
-    "calls": 510062,
+    "variants": 48349,
+    "serviceDays": 2849587,
+    "calls": 511495,
     "stations": 2747
   },
-  "sha256": "dcf209dc93e545353950237382493f946c6e8bdfa2e0c39c91ad8749a0435f11",
+  "sha256": "2344424fdc5849f8f62ea5e186be1d4f5c94081c87e5676d5d5b65f8ebb5b958",
   "sources": [
     {
       "year": 2026,
@@ -28,7 +28,7 @@
         "bytes": 25292951,
         "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
         "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
-        "checkedAt": "2026-11-17T13:31:30.135720Z"
+        "checkedAt": "2026-11-18T13:08:50.272936Z"
       },
       "months": [
         {
@@ -93,13 +93,13 @@
         },
         {
           "name": "2026-11",
-          "count": 12246,
-          "inventorySHA256": "581d78b5f2611a0bfb634a9609f004ceb4c857dddb44a611b8afcfb0cac11116"
+          "count": 13046,
+          "inventorySHA256": "84a8168df689de9d0c9523f0d540c8f198263cc93ae45a0e65b536cafb1e06a4"
         }
       ],
-      "expectedAmendments": 205202,
+      "expectedAmendments": 206002,
       "complete": true,
-      "sourceCheckedAt": "2026-11-17T13:31:56.640573Z"
+      "sourceCheckedAt": "2026-11-18T13:09:21.275127Z"
     }
   ],
   "excludedVariants": [
@@ -3884,6 +3884,34 @@
       "pathID": "PA:0054:--KADR370786:01:2026",
       "days": [
         "2026-10-31"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR371208:01:2026",
+      "days": [
+        "2026-11-26"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR371217:01:2026",
+      "days": [
+        "2026-11-26"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR371221:01:2026",
+      "days": [
+        "2026-11-26"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR371224:01:2026",
+      "days": [
+        "2026-11-26"
       ],
       "reason": "declaredOperationalCountertime"
     },
