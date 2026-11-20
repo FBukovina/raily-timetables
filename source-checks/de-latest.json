@@ -1,7 +1,7 @@
 {
   "country": "DE",
-  "sourceCheckedAt": "2026-11-19T15:36:14Z",
-  "generatedAt": "2026-11-19T15:36:28Z",
+  "sourceCheckedAt": "2026-11-20T15:04:27Z",
+  "generatedAt": "2026-11-20T15:04:42Z",
   "feeds": [
     "fv.zip",
     "rv.zip"
@@ -19,7 +19,7 @@
     "calls": 1213326,
     "serviceDays": 1187385
   },
-  "sha256": "9196c479dec0157f5cf3cf9517201e329683dec444c088fddd3f819378bf47f2",
+  "sha256": "7740209e936528c7bf71e9dedabeed5f29e7a1ea903b283921b77e4f824e7f12",
   "stationCountries": {
     "DE": 6436,
     "AT": 187,
