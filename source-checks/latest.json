@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
-  "sourceCheckedAt": "2026-11-26T13:58:12.110164Z",
-  "generatedAt": "2026-11-26T16:18:54Z",
+  "sourceCheckedAt": "2026-11-27T13:56:30.373679Z",
+  "generatedAt": "2026-11-27T15:28:36Z",
   "years": [
     2026
   ],
-  "amendments": 211874,
+  "amendments": 212645,
   "messages": {
-    "path": 58731,
-    "cancel": 166395,
-    "excludedCountertimeVariants": 312,
+    "path": 58869,
+    "cancel": 167028,
+    "excludedCountertimeVariants": 313,
     "excludedForeignTimingVariants": 3,
     "excludedInvalidTimingVariants": 3
   },
   "catalog": {
-    "variants": 49359,
-    "serviceDays": 2849333,
-    "calls": 521848,
+    "variants": 49490,
+    "serviceDays": 2849213,
+    "calls": 523180,
     "stations": 2748
   },
-  "sha256": "dedcd549264de267f0a47cac0846dcfb4710cb21fa3727c0f440f7c78948cdbd",
+  "sha256": "7cc1a4da82458df1d9802ac9a2ed58c92ff7ba6fb63c2d7c2856ede3e9ab05b1",
   "sources": [
     {
       "year": 2026,
@@ -28,7 +28,7 @@
         "bytes": 25292951,
         "lastModified": "Tue, 18 Nov 2025 08:34:31 GMT",
         "sha256": "b1b258062cd43a5b527406d9da688432710e1bd962b554fbd343d27bd6a4a031",
-        "checkedAt": "2026-11-26T13:58:12.110164Z"
+        "checkedAt": "2026-11-27T13:56:30.373679Z"
       },
       "months": [
         {
@@ -93,13 +93,13 @@
         },
         {
           "name": "2026-11",
-          "count": 18918,
-          "inventorySHA256": "ed5fbad0d1f5ad7cbc9c802867722edf01b88d8a6b4be524fad03d1ab41e4e3d"
+          "count": 19689,
+          "inventorySHA256": "103407332baf55b3926f5b0d3f04a28785fba98ae90c008b71ae9802e015ec3f"
         }
       ],
-      "expectedAmendments": 211874,
+      "expectedAmendments": 212645,
       "complete": true,
-      "sourceCheckedAt": "2026-11-26T13:58:45.684888Z"
+      "sourceCheckedAt": "2026-11-27T13:56:55.748109Z"
     }
   ],
   "excludedVariants": [
@@ -4211,6 +4211,22 @@
       "pathID": "PA:0054:--KADR403611:01:2026",
       "days": [
         "2026-12-02",
+        "2026-12-03",
+        "2026-12-04",
+        "2026-12-05",
+        "2026-12-06",
+        "2026-12-07",
+        "2026-12-08",
+        "2026-12-09",
+        "2026-12-10",
+        "2026-12-11",
+        "2026-12-12"
+      ],
+      "reason": "declaredOperationalCountertime"
+    },
+    {
+      "pathID": "PA:0054:--KADR403618:01:2026",
+      "days": [
         "2026-12-03",
         "2026-12-04",
         "2026-12-05",
