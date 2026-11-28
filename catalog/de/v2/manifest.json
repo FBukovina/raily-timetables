@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "validFrom": "2026-11-28",
+  "validThrough": "2026-12-28",
+  "sourceCheckedAt": "2026-11-28T15:28:33Z",
+  "generatedAt": "2026-11-28T15:28:57Z",
+  "sourceURL": "https://gtfs.de/en/feeds/",
+  "country": "DE",
+  "storage": "patterns",
+  "catalogURL": "https://raw.githubusercontent.com/FBukovina/raily-timetables/catalog/catalog/de/v2/catalog-569b53e1b7daa9861cb53a03e546cecc677c16db47f4e781fdb54782eacf9580.sqlite.xz",
+  "compressedBytes": 6312484,
+  "uncompressedBytes": 39919616,
+  "sha256": "569b53e1b7daa9861cb53a03e546cecc677c16db47f4e781fdb54782eacf9580",
+  "compression": "xz"
+}
