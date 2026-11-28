@@ -1,41 +1,41 @@
 {
   "country": "DE",
-  "sourceCheckedAt": "2026-11-27T15:29:50Z",
-  "generatedAt": "2026-11-27T15:30:07Z",
+  "sourceCheckedAt": "2026-11-28T15:28:33Z",
+  "generatedAt": "2026-11-28T15:28:57Z",
   "feeds": [
     "fv.zip",
     "rv.zip"
   ],
   "trips": {
-    "trips": 140267,
-    "mergedTrips": 24424,
+    "trips": 147050,
+    "mergedTrips": 35385,
     "sameNameStationVariants": 0
   },
   "catalog": {
-    "stations": 8129,
-    "variants": 115843,
-    "patterns": 39802,
-    "patternCalls": 552373,
-    "calls": 1662640,
-    "serviceDays": 1227264
+    "stations": 8191,
+    "variants": 111665,
+    "patterns": 38745,
+    "patternCalls": 540214,
+    "calls": 1606468,
+    "serviceDays": 1192974
   },
-  "sha256": "10141642a04a51074d50b0b22dad841d82cd9fb390355b29df7235c1230b5771",
+  "sha256": "569b53e1b7daa9861cb53a03e546cecc677c16db47f4e781fdb54782eacf9580",
   "stationCountries": {
-    "DK": 14,
-    "DE": 7058,
+    "DE": 7104,
+    "PL": 130,
     "AT": 198,
-    "SI": 10,
-    "HR": 2,
-    "PL": 127,
-    "CZ": 428,
-    "SK": 4,
-    "CH": 141,
-    "FR": 48,
-    "NL": 23,
-    "SE": 7,
+    "CZ": 436,
     "IT": 22,
+    "DK": 14,
+    "CH": 141,
+    "NL": 22,
+    "FR": 53,
+    "SI": 10,
     "BE": 23,
+    "SK": 4,
     "HU": 14,
+    "SE": 8,
+    "HR": 2,
     "LU": 10
   },
   "excludedTrips": []
